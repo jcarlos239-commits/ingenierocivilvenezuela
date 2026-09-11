@@ -51,8 +51,7 @@ export default function Header() {
         {/* Logo — shrinks on mobile to avoid crowding the right side */}
         <a href="#inicio" className="flex flex-col gap-[2px] items-start no-underline min-w-0 shrink">
           <LogoMark />
-          <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold leading-normal text-[13px] sm:text-[18px] text-white whitespace-nowrap">obrasciviles.com</p>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd100] text-[9px] sm:text-[11px] whitespace-nowrap">Ing. Juan Carlos Mogollón</p>
+          <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold leading-normal text-[10px] sm:text-[18px] text-white whitespace-nowrap">Ing. Juan Carlos Mogollón</p>
         </a>
 
         {/* Desktop nav */}

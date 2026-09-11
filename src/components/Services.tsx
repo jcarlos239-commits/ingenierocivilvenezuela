@@ -76,13 +76,13 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="bg-[#f8f9fa] w-full py-10 sm:py-[60px] px-4 sm:px-8 md:px-[80px]">
+    <section id="servicios" className="bg-[#f8f9fa] w-full pt-10 pb-6 sm:py-[60px] px-4 sm:px-8 md:px-[80px]">
       {/* Section header */}
       <div className="flex flex-col gap-3 items-center text-center mb-10 sm:mb-[60px]">
         <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#1a1d20] text-[10px] sm:text-[12px] uppercase tracking-wide">Especialistas a tu disposición</p>
         <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[#111315] text-[clamp(22px,4vw,36px)] leading-[1.2]">Nuestros Servicios</h2>
         <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[14px] sm:text-[16px] leading-[1.5] max-w-[720px]">
-          Soluciones integrales respaldadas por más de 30 años de experiencia en inspección, residencia de obras y gerencia de proyectos en el sector público y privado.
+          Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), especialista en patología estructural, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
         </p>
       </div>
 

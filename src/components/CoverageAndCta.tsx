@@ -1,7 +1,6 @@
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
-import imgBg from "@/imports/ObrasCivilesLanding/9e6aae16d51c4afd461e3d1458cda9c12495b87b.png";
+import imgBg from "@/imports/72286.jpg";
 
-const WHATSAPP_URL = "https://wa.me/584141242017";
 const PHONE_TEL = "tel:+584141242017";
 
 function WhatsAppIcon() {
@@ -40,11 +39,24 @@ function PhoneIcon() {
 
 export default function CoverageAndCta() {
   return (
-    <section id="cobertura" className="relative w-full overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <img alt="" className="absolute max-w-none object-cover size-full" src={imgBg} />
-        <div className="absolute bg-[rgba(20,20,20,0.6)] inset-0" />
-      </div>
+    /*
+     * Background-image on the section itself so it always covers 100% of the
+     * section height — including when content grows taller on mobile.
+     * An absolutely-positioned <img> only fills the nearest positioned ancestor's
+     * *current* height, which leaves a gray gap when the section grows.
+     */
+    <section
+      id="cobertura"
+      className="relative w-full"
+      style={{
+        backgroundImage: `url(${imgBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Dark overlay — inset-0 always matches section height because the section is the positioned parent */}
+      <div className="absolute inset-0 bg-[rgba(20,20,20,0.6)] pointer-events-none" />
 
       <div className="relative flex flex-col items-center gap-10 sm:gap-[60px] px-4 sm:px-8 md:px-[80px] py-10 sm:py-[60px]">
         {/* Coverage area */}

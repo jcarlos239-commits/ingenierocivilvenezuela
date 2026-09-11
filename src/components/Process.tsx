@@ -49,7 +49,7 @@ const steps = [
 export default function Process() {
   return (
     <section id="proceso" className="bg-[#f8f9fa] w-full">
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-start lg:items-center px-4 sm:px-8 md:px-[80px] py-10 sm:py-[60px]">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-start lg:items-center px-4 sm:px-8 md:px-[80px] pt-6 pb-10 sm:py-[60px]">
         {/* Left column */}
         <div className="flex flex-col gap-5 sm:gap-6 w-full lg:w-[500px] lg:shrink-0">
           <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#e0bc00] text-[10px] sm:text-[12px] uppercase tracking-wide">NUESTRO MÉTODO</p>
