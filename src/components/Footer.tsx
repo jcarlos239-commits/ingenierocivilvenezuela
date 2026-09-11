@@ -1,6 +1,5 @@
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
 
-const PHONE_NUMBER = "+58 414 1242017";
 const PHONE_TEL = "tel:+584141242017";
 const EMAIL = "jcarlosmogollon@hotmail.com";
 const EMAIL_LINK = `mailto:${EMAIL}`;
@@ -55,38 +54,39 @@ function MapPinSmall() {
 export default function Footer() {
   return (
     <footer id="contacto" className="bg-[#111315] w-full border-t border-[#2c3035]">
-      <div className="flex flex-col gap-8 px-5 md:px-[80px] py-[60px]">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-[202px] justify-center">
+      <div className="flex flex-col gap-8 px-4 sm:px-8 md:px-[80px] py-10 sm:py-[60px]">
+        {/* Two-column on md+, stacked on mobile */}
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 lg:gap-[202px] md:justify-center">
           {/* Brand column */}
-          <div className="flex flex-col gap-5 max-w-[400px]">
+          <div className="flex flex-col gap-4 sm:gap-5 w-full md:max-w-[400px]">
             <div className="flex items-center gap-2">
               <LogoMarkSmall />
-              <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[16px] text-white leading-[0]">
+              <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[15px] sm:text-[16px] text-white leading-[0]">
                 <span className="leading-normal">OBRAS</span>
                 <span className="leading-normal text-[#ffd200]">CIVILES</span>
                 <span className="leading-normal">.com</span>
               </p>
             </div>
-            <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[14px] leading-[1.6]">
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[13px] sm:text-[14px] leading-[1.6]">
               Somos una empresa de ingeniería civil y construcción comprometida con el desarrollo de infraestructura duradera y segura en Venezuela.
             </p>
           </div>
 
           {/* Contact column */}
-          <div className="flex flex-col gap-4">
-            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[12px] uppercase tracking-wide">CONTÁCTANOS</p>
+          <div className="flex flex-col gap-3 sm:gap-4">
+            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[10px] sm:text-[12px] uppercase tracking-wide">CONTÁCTANOS</p>
             <div className="flex flex-col gap-3">
-              <a href={PHONE_TEL} className="flex items-center gap-[10px] hover:opacity-80 transition-opacity">
+              <a href={PHONE_TEL} className="flex items-center gap-[10px] hover:opacity-80 transition-opacity min-h-[44px] sm:min-h-0">
                 <PhoneIconSmall />
-                <span className="font-['Inter:Regular',sans-serif] font-normal text-white text-[14px]">{PHONE_NUMBER}</span>
+                <span className="font-['Inter:Regular',sans-serif] font-normal text-white text-[13px] sm:text-[14px]">+58 414 1242017</span>
               </a>
-              <a href={EMAIL_LINK} className="flex items-center gap-[10px] hover:opacity-80 transition-opacity">
+              <a href={EMAIL_LINK} className="flex items-center gap-[10px] hover:opacity-80 transition-opacity min-h-[44px] sm:min-h-0">
                 <MailIcon />
-                <span className="font-['Inter:Regular',sans-serif] font-normal text-white text-[14px]">{EMAIL}</span>
+                <span className="font-['Inter:Regular',sans-serif] font-normal text-white text-[13px] sm:text-[14px] break-all">{EMAIL}</span>
               </a>
               <div className="flex items-start gap-[10px]">
                 <MapPinSmall />
-                <p className="font-['Inter:Regular',sans-serif] font-normal text-white text-[14px] leading-[1.4] max-w-[260px]">
+                <p className="font-['Inter:Regular',sans-serif] font-normal text-white text-[13px] sm:text-[14px] leading-[1.4]">
                   Av. Francisco de Miranda, Torre Delta, Piso 8, Ofic. 8A, El Rosal, Chacao, Caracas.
                 </p>
               </div>
@@ -96,7 +96,7 @@ export default function Footer() {
 
         <div className="h-px w-full bg-[#2c3035]" />
 
-        <div className="flex flex-col sm:flex-row justify-between gap-2 text-[#6c757d] text-[12px] font-['Inter:Regular',sans-serif] font-normal">
+        <div className="flex flex-col sm:flex-row justify-between gap-2 text-[#6c757d] text-[11px] sm:text-[12px] font-['Inter:Regular',sans-serif] font-normal">
           <p>© 2026 Obras Civiles Venezuela. Todos los derechos reservados. RIF J-30000000-0</p>
           <p>Diseñado y desarrollado bajo normativas de ingeniería de Venezuela.</p>
         </div>

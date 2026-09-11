@@ -50,4 +50,29 @@ body,
 
 html {
   scroll-behavior: smooth;
+  /* Prevent any element from causing page-level horizontal scroll */
+  overflow-x: hidden;
+}
+
+/* Border-box everywhere + allow flex/grid children to shrink below content size */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Keep images from ever breaking out of their container */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+ * Do NOT set height:auto on video globally — background videos need
+ * height:100% (Tailwind h-full) to fill their positioned container.
+ * Only constrain video width so it never causes horizontal overflow.
+ */
+video {
+  max-width: 100%;
 }

@@ -6,7 +6,7 @@ const PHONE_TEL = "tel:+584141242017";
 
 function LogoMark() {
   return (
-    <div className="relative shrink-0 size-[28px]">
+    <div className="relative shrink-0 size-[24px] sm:size-[28px]">
       <svg className="absolute block inset-0 size-full" fill="none" height="28" preserveAspectRatio="none" viewBox="0 0 28 28" width="28">
         <g>
           <path d={svgPaths.p50a0200} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" />
@@ -44,15 +44,15 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 h-[80px] w-full" data-name="navigation-bar">
+    <header className="sticky top-0 z-50 h-[64px] sm:h-[80px] w-full" data-name="navigation-bar">
       <div className="absolute inset-0 bg-[rgba(17,19,21,0.6)] pointer-events-none" />
 
-      <div className="relative flex items-center justify-between h-full px-5 md:px-[80px]">
-        {/* Logo */}
-        <a href="#inicio" className="flex flex-col gap-[2px] items-start no-underline">
+      <div className="relative flex items-center justify-between h-full px-4 sm:px-5 md:px-[80px]">
+        {/* Logo — shrinks on mobile to avoid crowding the right side */}
+        <a href="#inicio" className="flex flex-col gap-[2px] items-start no-underline min-w-0 shrink">
           <LogoMark />
-          <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold leading-normal text-[18px] text-white whitespace-nowrap">obrasciviles.com</p>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd100] text-[11px] whitespace-nowrap">Ing. Juan Carlos Mogollón</p>
+          <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold leading-normal text-[13px] sm:text-[18px] text-white whitespace-nowrap">obrasciviles.com</p>
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd100] text-[9px] sm:text-[11px] whitespace-nowrap">Ing. Juan Carlos Mogollón</p>
         </a>
 
         {/* Desktop nav */}
@@ -71,28 +71,31 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Mobile CTA + hamburger */}
-        <div className="flex items-center gap-3 lg:hidden">
-          <a href={PHONE_TEL} className="flex items-center gap-2 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-3 py-2 text-white">
-            <PhoneIcon size={16} />
-            <span className="font-['Inter:Bold',sans-serif] font-bold text-[13px]">Llamar</span>
+        {/* Mobile: icon-only call + hamburger — no text label to save space */}
+        <div className="flex items-center gap-2 lg:hidden shrink-0">
+          <a
+            href={PHONE_TEL}
+            aria-label="Llamar"
+            className="flex items-center justify-center bg-[#111315] border-2 border-[#ffd200] rounded-[8px] size-[40px] text-white hover:bg-[#1e2124] transition-colors"
+          >
+            <PhoneIcon size={18} />
           </a>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menú"
-            className="text-white p-2"
+            className="flex items-center justify-center text-white size-[40px]"
           >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {menuOpen ? (
                 <>
-                  <line x1="4" y1="4" x2="20" y2="20" />
-                  <line x1="20" y1="4" x2="4" y2="20" />
+                  <line x1="4" y1="4" x2="18" y2="18" />
+                  <line x1="18" y1="4" x2="4" y2="18" />
                 </>
               ) : (
                 <>
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
+                  <line x1="3" y1="6" x2="19" y2="6" />
+                  <line x1="3" y1="11" x2="19" y2="11" />
+                  <line x1="3" y1="16" x2="19" y2="16" />
                 </>
               )}
             </svg>
@@ -100,7 +103,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu dropdown */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-[#111315] border-t border-[#2c3035] flex flex-col z-40">
           {navLinks.map((l) => (
@@ -108,17 +111,25 @@ export default function Header() {
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-6 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors"
+              className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
             >
               {l.label}
             </a>
           ))}
-          <div className="p-4 flex gap-3">
-            <a href="https://wa.me/584141242017" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-4 py-3 text-white font-['Inter:Bold',sans-serif] font-bold text-[14px]">
-              WhatsApp
+          <div className="p-4 flex flex-col gap-3">
+            <a
+              href="https://wa.me/584141242017"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-4 py-4 text-white font-['Inter:Bold',sans-serif] font-bold text-[15px] min-h-[52px]"
+            >
+              Escríbenos por WhatsApp
             </a>
-            <a href={PHONE_TEL} className="flex-1 flex items-center justify-center gap-2 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-4 py-3 text-white font-['Inter:Bold',sans-serif] font-bold text-[14px]">
-              Llamar
+            <a
+              href={PHONE_TEL}
+              className="flex items-center justify-center gap-2 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-4 py-4 text-white font-['Inter:Bold',sans-serif] font-bold text-[15px] min-h-[52px]"
+            >
+              Llámanos Ahora
             </a>
           </div>
         </div>
