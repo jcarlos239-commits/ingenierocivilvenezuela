@@ -1,5 +1,5 @@
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
-import heroBg from "@/imports/VID_20260806_144734.mp4";
+import heroBg from "@/imports/ObrasCivilesLanding/6441610d805bf023ff7bc582a38d3531b1c0d4ec.png";
 
 const PHONE_TEL = "tel:+584141242017";
 
@@ -99,15 +99,15 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* Video block */}
+        {/* Image block */}
         <div className="relative w-full" style={{ minHeight: "260px" }}>
-          <video
-            autoPlay muted loop playsInline src={heroBg} aria-hidden="true"
+          <img
+            src={heroBg} alt="" aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
           />
-          {/* Top fade */}
+          {/* Top fade — 77% */}
           <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to bottom, rgba(17,19,21,1) 0%, rgba(17,19,21,0.75) 35%, rgba(17,19,21,0.3) 65%, transparent 100%)", zIndex: 1 }} />
-          {/* Bottom fade */}
+          {/* Bottom fade — 77% */}
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to top, rgba(17,19,21,1) 0%, rgba(17,19,21,0.75) 35%, rgba(17,19,21,0.3) 65%, transparent 100%)", zIndex: 1 }} />
         </div>
 
@@ -126,11 +126,11 @@ export default function Hero() {
 
       {/* ── DESKTOP layout (hidden below sm) ── */}
       <div className="hidden sm:block" style={{ position: "relative" }}>
-        <video
-          autoPlay muted loop playsInline src={heroBg} aria-hidden="true"
+        <img
+          src={heroBg} alt="" aria-hidden="true"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }}
         />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.6)", zIndex: 1 }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.50)", zIndex: 1 }} />
         <div
           className="relative flex flex-col items-center min-h-[600px] px-8 md:px-[80px] pt-[96px] pb-12 gap-8"
           style={{ zIndex: 2 }}
@@ -144,7 +144,7 @@ export default function Hero() {
             Obras Civiles en Venezuela
           </h1>
           <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[clamp(15px,1.8vw,18px)] text-center w-full max-w-[840px]">
-            Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), especialista en patología estructural, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
+            Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
           </p>
           <a
             href={PHONE_TEL}
