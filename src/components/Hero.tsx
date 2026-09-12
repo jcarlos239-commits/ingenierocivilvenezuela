@@ -88,9 +88,9 @@ export default function Hero() {
       <div className="sm:hidden flex flex-col">
 
         {/* Dark top block: badge + h1 */}
-        <div className="bg-[#111315] px-4 pt-[80px] pb-0 flex flex-col gap-3">
-          <div className="border border-[#ffd200] rounded-[4px] px-4 py-[7px] w-full">
-            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[9px] text-center leading-snug tracking-wide">
+        <div className="bg-[#111315] px-4 pt-[80px] pb-0 flex flex-col items-center gap-3">
+          <div className="border border-[#ffd200] rounded-[4px] px-4 py-[7px]">
+            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[9px] text-center leading-snug tracking-wide whitespace-nowrap">
               INGENIERÍA CIVIL Y CONSTRUCCIÓN EN VENEZUELA
             </p>
           </div>
@@ -99,21 +99,28 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* Image block */}
+        {/* Image block with description overlaid */}
         <div className="relative w-full" style={{ minHeight: "260px" }}>
           <img
             src={heroBg} alt="" aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
           />
-          {/* Top fade — 77% */}
+          {/* Base overlay — 50% */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.50)" }} />
+          {/* Top fade */}
           <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to bottom, rgba(17,19,21,1) 0%, rgba(17,19,21,0.75) 35%, rgba(17,19,21,0.3) 65%, transparent 100%)", zIndex: 1 }} />
-          {/* Bottom fade — 77% */}
+          {/* Bottom fade */}
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to top, rgba(17,19,21,1) 0%, rgba(17,19,21,0.75) 35%, rgba(17,19,21,0.3) 65%, transparent 100%)", zIndex: 1 }} />
+          {/* Description overlaid on image */}
+          <div className="relative px-4 py-10 flex items-center justify-center" style={{ zIndex: 2 }}>
+            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[15px] text-center">
+              Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
+            </p>
+          </div>
         </div>
 
-        {/* Dark bottom block: trust badges + call button */}
+        {/* Dark bottom block: button then trust badges (same order as desktop) */}
         <div className="bg-[#111315] px-4 pt-5 pb-5 flex flex-col gap-4">
-          <TrustBadges />
           <a
             href={PHONE_TEL}
             className="flex items-center justify-center gap-3 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-5 py-4 text-white hover:bg-[#1e2124] transition-colors min-h-[56px] w-full"
@@ -121,6 +128,7 @@ export default function Hero() {
             <PhoneIcon />
             <span className="font-['Inter:Bold',sans-serif] font-bold text-[16px]">Llámanos Ahora</span>
           </a>
+          <TrustBadges />
         </div>
       </div>
 
