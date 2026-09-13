@@ -56,7 +56,7 @@ export default function CoverageAndCta() {
       }}
     >
       {/* Dark overlay — inset-0 always matches section height because the section is the positioned parent */}
-      <div className="absolute inset-0 bg-[rgba(20,20,20,0.50)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[rgba(20,20,20,0.75)] pointer-events-none" />
 
       <div className="relative flex flex-col items-center gap-10 sm:gap-[60px] px-4 sm:px-8 md:px-[80px] py-10 sm:py-[60px]">
         {/* Coverage area */}

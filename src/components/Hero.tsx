@@ -105,16 +105,16 @@ export default function Hero() {
             src={heroBg} alt="" aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
           />
-          {/* Base overlay — 50% */}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.50)" }} />
-          {/* Top fade */}
-          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to bottom, rgba(17,19,21,1) 0%, rgba(17,19,21,0.75) 35%, rgba(17,19,21,0.3) 65%, transparent 100%)", zIndex: 1 }} />
-          {/* Bottom fade */}
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(to top, rgba(17,19,21,1) 0%, rgba(17,19,21,0.75) 35%, rgba(17,19,21,0.3) 65%, transparent 100%)", zIndex: 1 }} />
+          {/* Base overlay — 55% */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.55)" }} />
+          {/* Top edge fade */}
+          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to bottom, rgba(17,19,21,0.85) 0%, transparent 100%)", zIndex: 1 }} />
+          {/* Bottom edge fade */}
+          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to top, rgba(17,19,21,0.85) 0%, transparent 100%)", zIndex: 1 }} />
           {/* Description overlaid on image */}
           <div className="relative px-4 py-10 flex items-center justify-center" style={{ zIndex: 2 }}>
             <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[15px] text-center">
-              Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
+              Construcción, remodelaciones y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
             </p>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function Hero() {
           src={heroBg} alt="" aria-hidden="true"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }}
         />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.50)", zIndex: 1 }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.55)", zIndex: 1 }} />
         <div
           className="relative flex flex-col items-center min-h-[600px] px-8 md:px-[80px] pt-[96px] pb-12 gap-8"
           style={{ zIndex: 2 }}
@@ -152,7 +152,7 @@ export default function Hero() {
             Obras Civiles en Venezuela
           </h1>
           <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[clamp(15px,1.8vw,18px)] text-center w-full max-w-[840px]">
-            Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
+            Construcción, remodelaciones y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
           </p>
           <a
             href={PHONE_TEL}
