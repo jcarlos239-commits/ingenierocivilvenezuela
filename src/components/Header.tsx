@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router";
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
 
-const WHATSAPP_URL = "https://wa.me/584141242017";
 const PHONE_TEL = "tel:+584141242017";
+
+const serviceLinks = [
+  { label: "Proyectos", to: "/servicios/proyectos" },
+  { label: "Construcción de Obras Civiles", to: "/servicios/construccion-obras-civiles" },
+  { label: "Remodelaciones y Ampliaciones", to: "/servicios/remodelaciones-ampliaciones" },
+  { label: "Avalúos y Peritajes Técnicos", to: "/servicios/avaluos-peritajes-tecnicos" },
+  { label: "Patología Estructural", to: "/servicios/patologia-estructural" },
+  { label: "Estabilización de Taludes", to: "/servicios/estabilizacion-taludes" },
+];
 
 function LogoMark() {
   return (
@@ -33,14 +42,67 @@ function PhoneIcon({ stroke = "#FFD200", size = 18 }: { stroke?: string; size?: 
   );
 }
 
+function ServicesDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-1.5 font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[14px] hover:text-white transition-colors"
+      >
+        Servicios
+        <svg
+          width="12" height="12" fill="none" viewBox="0 0 12 12"
+          style={{ transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+        >
+          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute top-[calc(100%+12px)] left-0 bg-[#111315] border border-[#2c3035] rounded-[10px] shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-w-[260px] overflow-hidden z-50">
+          <Link
+            to="/servicios"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 px-4 py-3 border-b border-[#2c3035] font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[11px] uppercase tracking-wide hover:bg-[#1e2124] transition-colors"
+          >
+            Ver todos los servicios →
+          </Link>
+          {serviceLinks.map((s) => (
+            <Link
+              key={s.to}
+              to={s.to}
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[13px] hover:text-white hover:bg-[#1e2124] transition-colors border-b border-[#1e2124] last:border-0"
+            >
+              <span className="w-[5px] h-[5px] rounded-full bg-[#ffd200] shrink-0" />
+              {s.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
-  const navLinks = [
-    { label: "Servicios", href: "#servicios" },
-    { label: "Cómo Trabajamos", href: "#proceso" },
-    { label: "Cobertura", href: "#cobertura" },
-    { label: "Contacto", href: "#contacto" },
+  const otherLinks: { label: string; href?: string; to?: string }[] = [
+    { label: "Cómo Trabajamos", to: "/como-trabajamos" },
+    { label: "Cobertura", to: "/cobertura" },
+    { label: "Contacto", href: "/#contacto" },
   ];
 
   return (
@@ -48,19 +110,26 @@ export default function Header() {
       <div className="absolute inset-0 bg-[rgba(17,19,21,0.6)] pointer-events-none" />
 
       <div className="relative flex items-center justify-between h-full px-4 sm:px-5 md:px-[80px]">
-        {/* Logo — shrinks on mobile to avoid crowding the right side */}
-        <a href="#inicio" className="flex flex-col gap-[2px] items-start no-underline min-w-0 shrink">
+        {/* Logo */}
+        <Link to="/" className="flex flex-col gap-[2px] items-start no-underline min-w-0 shrink">
           <LogoMark />
           <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold leading-normal text-[10px] sm:text-[18px] text-white whitespace-nowrap">Ing. Juan Carlos Mogollón</p>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-6">
-          {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[14px] hover:text-white transition-colors">
-              {l.label}
-            </a>
-          ))}
+          <ServicesDropdown />
+          {otherLinks.map((l) =>
+            l.to ? (
+              <Link key={l.to} to={l.to} className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[14px] hover:text-white transition-colors">
+                {l.label}
+              </Link>
+            ) : (
+              <a key={l.href} href={l.href} className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[14px] hover:text-white transition-colors">
+                {l.label}
+              </a>
+            )
+          )}
           <a
             href={PHONE_TEL}
             className="flex items-center gap-[10px] bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-5 py-3 text-white hover:bg-[#1e2124] transition-colors"
@@ -70,7 +139,7 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Mobile: icon-only call + hamburger — no text label to save space */}
+        {/* Mobile: icon-only call + hamburger */}
         <div className="flex items-center gap-2 lg:hidden shrink-0">
           <a
             href={PHONE_TEL}
@@ -102,19 +171,68 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-[#111315] border-t border-[#2c3035] flex flex-col z-40">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setMenuOpen(false)}
-              className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
+          {/* Services accordion */}
+          <button
+            onClick={() => setServicesOpen((v) => !v)}
+            className="flex items-center justify-between font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px]"
+          >
+            Servicios
+            <svg
+              width="14" height="14" fill="none" viewBox="0 0 12 12"
+              style={{ transition: "transform 0.2s", transform: servicesOpen ? "rotate(180deg)" : "rotate(0deg)" }}
             >
-              {l.label}
-            </a>
-          ))}
+              <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          {servicesOpen && (
+            <div className="bg-[#0d0f11] flex flex-col border-b border-[#2c3035]">
+              <Link
+                to="/servicios"
+                onClick={() => { setMenuOpen(false); setServicesOpen(false); }}
+                className="flex items-center gap-2 px-7 py-3 font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[10px] uppercase tracking-wide hover:bg-[#1e2124] transition-colors"
+              >
+                Ver todos →
+              </Link>
+              {serviceLinks.map((s) => (
+                <Link
+                  key={s.to}
+                  to={s.to}
+                  onClick={() => { setMenuOpen(false); setServicesOpen(false); }}
+                  className="flex items-center gap-3 px-7 py-3 font-['Inter:Regular',sans-serif] text-[#ced4da] text-[14px] hover:text-white hover:bg-[#1e2124] transition-colors border-t border-[#1e2124]"
+                >
+                  <span className="w-[4px] h-[4px] rounded-full bg-[#ffd200] shrink-0" />
+                  {s.label}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* Other links */}
+          {otherLinks.map((l) =>
+            l.to ? (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setMenuOpen(false)}
+                className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
+              >
+                {l.label}
+              </a>
+            )
+          )}
+
           <div className="p-4 flex flex-col gap-3">
             <a
               href="https://wa.me/584141242017"

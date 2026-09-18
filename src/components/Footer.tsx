@@ -67,7 +67,7 @@ export default function Footer() {
               </p>
             </div>
             <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[13px] sm:text-[14px] leading-[1.6]">
-              Somos una empresa de ingeniería civil y construcción comprometida con el desarrollo de infraestructura duradera y segura en Venezuela.
+              Somos un grupo de ingenieros civiles dedicados al desarrollo de proyectos de ingeniería y construcción, comprometidos con ofrecer soluciones seguras, funcionales y duraderas para Venezuela.
             </p>
           </div>
 
@@ -93,12 +93,6 @@ export default function Footer() {
                 </div>
                 <span className="font-['Inter:Regular',sans-serif] font-normal text-white text-[13px] sm:text-[14px]">@Juan_carlos_mogollon_c</span>
               </a>
-              <div className="flex items-start gap-[10px]">
-                <MapPinSmall />
-                <p className="font-['Inter:Regular',sans-serif] font-normal text-white text-[13px] sm:text-[14px] leading-[1.4]">
-                  Av. Francisco de Miranda, Torre Delta, Piso 8, Ofic. 8A, El Rosal, Chacao, Caracas.
-                </p>
-              </div>
             </div>
           </div>
         </div>

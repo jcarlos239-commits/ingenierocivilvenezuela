@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 interface StepProps {
   number: string;
   title: string;
@@ -65,6 +67,12 @@ export default function Process() {
           >
             <span className="font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]">Solicitar Presupuesto</span>
           </a>
+          <Link
+            to="/como-trabajamos"
+            className="inline-flex items-center gap-2 text-[#111315] hover:text-[#ffd200] transition-colors font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] sm:text-[14px] self-start"
+          >
+            Ver proceso completo →
+          </Link>
         </div>
 
         {/* Steps */}

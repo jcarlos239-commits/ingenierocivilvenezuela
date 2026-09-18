@@ -74,7 +74,7 @@ function TrustBadges() {
       </div>
       <div className="flex flex-col items-center gap-2 text-center">
         <MapPinIcon />
-        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">Cobertura en Toda Venezuela</span>
+        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">Cobertura en todo Miranda y La Guaira</span>
       </div>
     </div>
   );
@@ -106,7 +106,7 @@ export default function Hero() {
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
           />
           {/* Base overlay — 55% */}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.55)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)" }} />
           {/* Top edge fade */}
           <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to bottom, rgba(17,19,21,0.85) 0%, transparent 100%)", zIndex: 1 }} />
           {/* Bottom edge fade */}
@@ -138,7 +138,7 @@ export default function Hero() {
           src={heroBg} alt="" aria-hidden="true"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }}
         />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.55)", zIndex: 1 }} />
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)", zIndex: 1 }} />
         <div
           className="relative flex flex-col items-center min-h-[600px] px-8 md:px-[80px] pt-[96px] pb-12 gap-8"
           style={{ zIndex: 2 }}
@@ -172,7 +172,7 @@ export default function Hero() {
             </div>
             <div className="flex flex-col items-center gap-2 text-center">
               <svg className="shrink-0 size-[24px]" fill="none" viewBox="0 0 24 24"><path d={svgPaths.p3d476500} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" /></svg>
-              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">Cobertura en Toda Venezuela</span>
+              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">Cobertura en todo Miranda y La Guaira</span>
             </div>
           </div>
         </div>

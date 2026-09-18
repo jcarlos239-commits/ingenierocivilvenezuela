@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
 import imgBg from "@/imports/72286.jpg";
 
@@ -56,18 +57,24 @@ export default function CoverageAndCta() {
       }}
     >
       {/* Dark overlay — inset-0 always matches section height because the section is the positioned parent */}
-      <div className="absolute inset-0 bg-[rgba(20,20,20,0.75)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[rgba(20,20,20,0.60)] pointer-events-none" />
 
       <div className="relative flex flex-col items-center gap-10 sm:gap-[60px] px-4 sm:px-8 md:px-[80px] py-10 sm:py-[60px]">
         {/* Coverage area */}
         <div className="flex flex-col gap-3 sm:gap-4 items-center text-center">
           <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[10px] sm:text-[12px] uppercase tracking-wide">DISPONIBILIDAD INMEDIATA</p>
           <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-white text-[clamp(20px,3.5vw,32px)] leading-[1.2] w-full">
-            Cobertura en Toda Venezuela
+            Cobertura en todo el Estado Miranda y La Guaira
           </h2>
           <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd100] text-[14px] sm:text-[16px] leading-[1.5] w-full">
             Desplegamos nuestros equipos de inspección y cuadrillas de construcción rápidamente en las principales zonas de la capital:
           </p>
+          <Link
+            to="/cobertura"
+            className="inline-flex items-center gap-2 text-white hover:text-[#ffd200] transition-colors font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] sm:text-[14px]"
+          >
+            Ver cobertura →
+          </Link>
         </div>
 
         {/* CTA block */}
