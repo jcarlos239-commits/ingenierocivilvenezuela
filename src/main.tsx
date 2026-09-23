@@ -1,12 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { getRouteMeta } from "./utils/prerender-meta";
+import { applyPageSeo } from "./utils/seo";
 
-document.title = 'Obras Civiles en Venezuela | Ing. Juan Carlos Mogollón'
+// Apply route-specific meta synchronously before React hydrates so that
+// JS-executing crawlers see the correct title/description immediately.
+const _path = window.location.pathname;
+const _meta = getRouteMeta(_path);
+applyPageSeo({ title: _meta.title, description: _meta.description, path: _path });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const rootEl = document.getElementById("root")!;
+if (rootEl.hasChildNodes()) {
+  hydrateRoot(
+    rootEl,
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+} else {
+  createRoot(rootEl).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+}

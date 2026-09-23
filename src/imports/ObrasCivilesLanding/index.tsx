@@ -1,6 +1,6 @@
 import svgPaths from "./svg-1jh7odq5fn";
-import imgNavigationBar from "./6441610d805bf023ff7bc582a38d3531b1c0d4ec.png";
-import imgCtaWrapper from "./9e6aae16d51c4afd461e3d1458cda9c12495b87b.png";
+import heroDesktopImg from "./hero-desktop.webp";
+import imgCtaWrapper from "./9e6aae16d51c4afd461e3d1458cda9c12495b87b.webp";
 
 function CircleX() {
   return (
@@ -65,7 +65,10 @@ function NavigationBar() {
     <div className="h-[80px] relative shrink-0 w-full" data-name="navigation-bar">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[787.5%] left-0 max-w-none top-[-31.25%] w-full" src={imgNavigationBar} />
+          <picture>
+            <source srcSet={heroDesktopImg} type="image/webp" />
+            <img alt="" className="absolute h-[787.5%] left-0 max-w-none top-[-31.25%] w-full" src={heroDesktopImg} />
+          </picture>
         </div>
         <div className="absolute bg-[rgba(17,19,21,0.6)] inset-0" />
       </div>
@@ -93,7 +96,7 @@ function Frame2() {
     <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 w-full" data-name="Frame">
       <Frame3 />
       <p className="[word-break:break-word] font-['Unbounded:Black',sans-serif] font-black leading-[1.15] relative shrink-0 text-[56px] text-center text-white w-[1000px]">Obras Civiles en Venezuela</p>
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[1.6] not-italic relative shrink-0 text-[#ced4da] text-[20px] text-center w-[840px]">Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), especialista en patología estructural, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.</p>
+      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[1.6] not-italic relative shrink-0 text-[#ced4da] text-[20px] text-center w-[840px]">Construcción, rehabilitación y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.</p>
     </div>
   );
 }
@@ -218,7 +221,7 @@ function Frame8() {
   return (
     <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-name="Frame">
       <MapPin />
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">Cobertura en Toda Venezuela</p>
+      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">Caracas, Miranda y La Guaira</p>
     </div>
   );
 }
@@ -238,7 +241,10 @@ function HeroSection() {
     <div className="h-[500px] relative shrink-0 w-full" data-name="hero-section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[126%] left-0 max-w-none top-[-21%] w-full" src={imgNavigationBar} />
+          <picture>
+            <source srcSet={heroDesktopImg} type="image/webp" />
+            <img alt="" className="absolute h-[126%] left-0 max-w-none top-[-21%] w-full" src={heroDesktopImg} />
+          </picture>
         </div>
         <div className="absolute bg-[rgba(17,19,21,0.6)] inset-0" />
       </div>
@@ -256,7 +262,7 @@ function HeroSection() {
 function SectionHeader() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-col gap-[12px] items-center relative shrink-0 w-full" data-name="section-header">
-      <p className="font-['Unbounded:Bold',sans-serif] font-bold leading-[normal] relative shrink-0 text-[#1a1d20] text-[12px] uppercase whitespace-nowrap">Especialistas a tu disposición</p>
+      <p className="font-['Unbounded:Bold',sans-serif] font-bold leading-[normal] relative shrink-0 text-[#1a1d20] text-[12px] uppercase whitespace-nowrap">Ingeniería Civil a tu Disposición</p>
       <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold leading-[1.2] min-w-full relative shrink-0 text-[#111315] text-[36px] text-center w-[min-content]">Nuestros Servicios</p>
       <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.5] not-italic relative shrink-0 text-[#6c757d] text-[16px] text-center w-[720px]">Soluciones integrales respaldadas por más de 30 años de experiencia en inspección, residencia de obras y gerencia de proyectos en el sector público y privado.</p>
     </div>
@@ -747,7 +753,7 @@ function Frame25() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-center leading-[normal] relative shrink-0 w-full" data-name="Frame">
       <p className="font-['Unbounded:Bold',sans-serif] font-bold relative shrink-0 text-[#ffd200] text-[12px] uppercase whitespace-nowrap">DISPONIBILIDAD INMEDIATA</p>
-      <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold min-w-full relative shrink-0 text-[32px] text-center text-white w-[min-content]">Cobertura en Toda Venezuela</p>
+      <p className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold min-w-full relative shrink-0 text-[32px] text-center text-white w-[min-content]">Caracas, Miranda y La Guaira</p>
       <p className="font-['Inter:Regular',sans-serif] font-normal not-italic relative shrink-0 text-[#ffd100] text-[16px] text-center w-[800px]">Desplegamos nuestros equipos de inspección y cuadrillas de construcción rápidamente en las principales zonas de la capital:</p>
     </div>
   );

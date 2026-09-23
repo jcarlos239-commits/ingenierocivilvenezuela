@@ -7,15 +7,13 @@ import icoConstruccion from "@/imports/72947.png";
 export default function AvaluosPeritajesTecnicos() {
   return (
     <ServicePageLayout
-      title="Avalúos y Peritajes Técnicos"
-      metaTitle="Avalúos y Peritajes Técnicos | Ing. Juan Carlos Mogollón"
-      metaDescription="Servicios de avalúos de bienes inmuebles, peritajes técnicos e informes periciales para trámites legales, bancarios y administrativos en Venezuela."
-      intro="Realizamos avalúos de bienes inmuebles y peritajes técnicos con elaboración de informes documentados, útiles para trámites legales, bancarios y administrativos relacionados con propiedades e infraestructuras."
+      title="Avalúos Técnicos y Peritajes Judiciales"
+      intro="Realizamos avalúos técnicos de bienes inmuebles y peritajes judiciales con elaboración de informes documentados, útiles para trámites legales, bancarios y administrativos relacionados con propiedades e infraestructuras."
       iconSrc={icoAvaluos}
-      whatWeOffer="Nuestros servicios de avalúos y peritajes brindan la documentación técnica necesaria para respaldar decisiones patrimoniales, procesos legales y gestiones ante entidades bancarias y administrativas. Los informes son elaborados con criterio técnico de ingeniería civil."
+      whatWeOffer="Nuestros servicios de avalúos técnicos y peritajes judiciales brindan la documentación técnica necesaria para respaldar decisiones patrimoniales, procesos legales y gestiones ante entidades bancarias y administrativas. Los informes son elaborados con criterio técnico de ingeniería civil."
       items={[
         {
-          title: "Avalúos de bienes inmuebles",
+          title: "Avalúos técnicos de bienes inmuebles",
           description: "Determinación del valor de propiedades residenciales, comerciales e industriales mediante inspección técnica y análisis comparativo.",
         },
         {
@@ -27,7 +25,7 @@ export default function AvaluosPeritajesTecnicos() {
           description: "Visitas de inspección presencial para evaluar el estado físico y constructivo del inmueble o infraestructura.",
         },
         {
-          title: "Peritajes técnicos",
+          title: "Peritajes Judiciales",
           description: "Evaluación técnica especializada de inmuebles y estructuras para determinar condiciones, daños o causas de fallas.",
         },
         {

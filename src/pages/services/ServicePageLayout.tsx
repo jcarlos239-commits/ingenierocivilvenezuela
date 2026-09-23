@@ -1,5 +1,8 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useEffect } from "react";
+import { applyPageSeo, resetPageSeo } from "@/utils/seo";
+import { getRouteMeta } from "@/utils/prerender-meta";
+import { useWhatsApp } from "@/components/WhatsAppModal";
 
 interface RelatedService {
   title: string;
@@ -14,8 +17,6 @@ interface ServiceItem {
 
 interface ServicePageLayoutProps {
   title: string;
-  metaTitle: string;
-  metaDescription: string;
   intro: string;
   iconSrc: string;
   whatWeOffer: string;
@@ -25,29 +26,72 @@ interface ServicePageLayoutProps {
 
 export default function ServicePageLayout({
   title,
-  metaTitle,
-  metaDescription,
   intro,
   iconSrc,
   whatWeOffer,
   items,
   relatedServices,
 }: ServicePageLayoutProps) {
+  const location = useLocation();
+  const meta = getRouteMeta(location.pathname);
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": title,
+    "description": meta.description,
+    "provider": {
+      "@id": "https://ingenierocivilvenezuela.com/#organization",
+      "@type": "Organization",
+      "name": "Ing. Juan Carlos Mogollón",
+    },
+    "url": `https://ingenierocivilvenezuela.com${location.pathname}`,
+    "areaServed": ["Distrito Capital", "Miranda", "La Guaira"],
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://ingenierocivilvenezuela.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Servicios",
+        "item": "https://ingenierocivilvenezuela.com/servicios",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": title,
+        "item": `https://ingenierocivilvenezuela.com${location.pathname}`,
+      },
+    ],
+  };
+
   useEffect(() => {
-    document.title = metaTitle;
-    let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      document.head.appendChild(meta);
-    }
-    meta.content = metaDescription;
+    applyPageSeo({
+      title: meta.title,
+      description: meta.description,
+      path: location.pathname,
+    });
     return () => {
-      document.title = "Obras Civiles en Venezuela | Ing. Juan Carlos Mogollón";
+      resetPageSeo();
     };
-  }, [metaTitle, metaDescription]);
+  }, [meta.title, meta.description, location.pathname]);
+
+  const { trigger, modal } = useWhatsApp();
 
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {modal}
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="bg-[#f8f9fa] border-b border-[#e9ecef] px-4 sm:px-8 md:px-[80px] py-3">
@@ -77,14 +121,12 @@ export default function ServicePageLayout({
               {intro}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href="https://wa.me/584141242017"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px]"
+              <button
+                onClick={trigger}
+                className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] border-none cursor-pointer"
               >
                 Solicitar información
-              </a>
+              </button>
               <a
                 href="tel:+584141242017"
                 className="inline-flex items-center justify-center gap-2 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-6 py-4 text-white hover:bg-[#1e2124] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px]"
@@ -148,14 +190,12 @@ export default function ServicePageLayout({
               Contáctanos y cuéntanos sobre tu proyecto. Estamos listos para ayudarte.
             </p>
           </div>
-          <a
-            href="https://wa.me/584141242017"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px] w-full sm:w-auto"
+          <button
+            onClick={trigger}
+            className="shrink-0 inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px] w-full sm:w-auto border-none cursor-pointer"
           >
             Solicitar información
-          </a>
+          </button>
         </div>
       </div>
 
@@ -172,7 +212,7 @@ export default function ServicePageLayout({
                 to={s.path}
                 className="group flex items-center gap-4 bg-[#f8f9fa] rounded-[12px] border border-[#e9ecef] p-4 hover:border-[#ffd200] hover:shadow-sm transition-all"
               >
-                <img src={s.icon} alt={s.title} style={{ width: 48, height: 48, objectFit: "contain", flexShrink: 0 }} />
+                <img src={s.icon} alt={s.title} width={48} height={48} loading="lazy" style={{ width: 48, height: 48, objectFit: "contain", flexShrink: 0 }} />
                 <span className="font-['Unbounded:Bold',sans-serif] font-bold text-[#111315] text-[12px] sm:text-[13px] leading-snug group-hover:text-[#111315]">
                   {s.title}
                 </span>
@@ -195,5 +235,6 @@ export default function ServicePageLayout({
         </div>
       </div>
     </div>
+    </>
   );
 }

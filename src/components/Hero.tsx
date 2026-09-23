@@ -1,5 +1,6 @@
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
-import heroBg from "@/imports/ObrasCivilesLanding/6441610d805bf023ff7bc582a38d3531b1c0d4ec.png";
+import heroDesktopWebP from "@/imports/ObrasCivilesLanding/hero-desktop.webp";
+import heroMobileWebP from "@/imports/ObrasCivilesLanding/hero-mobile.webp";
 
 const PHONE_TEL = "tel:+584141242017";
 
@@ -74,7 +75,7 @@ function TrustBadges() {
       </div>
       <div className="flex flex-col items-center gap-2 text-center">
         <MapPinIcon />
-        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">Cobertura en todo Miranda y La Guaira</span>
+        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">Cobertura en Miranda, La Guaira y Caracas</span>
       </div>
     </div>
   );
@@ -101,16 +102,21 @@ export default function Hero() {
 
         {/* Image block with description overlaid */}
         <div className="relative w-full" style={{ minHeight: "260px" }}>
-          <img
-            src={heroBg} alt="" aria-hidden="true"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
-          />
+          <picture>
+            <source srcSet={heroMobileWebP} type="image/webp" />
+            <img
+              src={heroMobileWebP} alt="" aria-hidden="true"
+              fetchPriority="high"
+              loading="eager"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+            />
+          </picture>
           {/* Base overlay — 55% */}
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)" }} />
           {/* Top edge fade */}
-          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to bottom, rgba(17,19,21,0.85) 0%, transparent 100%)", zIndex: 1 }} />
+          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to bottom, rgba(17,19,21,0.42) 0%, transparent 100%)", zIndex: 1 }} />
           {/* Bottom edge fade */}
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to top, rgba(17,19,21,0.85) 0%, transparent 100%)", zIndex: 1 }} />
+          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to top, rgba(17,19,21,0.42) 0%, transparent 100%)", zIndex: 1 }} />
           {/* Description overlaid on image */}
           <div className="relative px-4 py-10 flex items-center justify-center" style={{ zIndex: 2 }}>
             <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[15px] text-center">
@@ -134,10 +140,15 @@ export default function Hero() {
 
       {/* ── DESKTOP layout (hidden below sm) ── */}
       <div className="hidden sm:block" style={{ position: "relative" }}>
-        <img
-          src={heroBg} alt="" aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }}
-        />
+        <picture>
+          <source srcSet={heroDesktopWebP} type="image/webp" />
+          <img
+            src={heroDesktopWebP} alt="" aria-hidden="true"
+            fetchPriority="high"
+            loading="eager"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }}
+          />
+        </picture>
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)", zIndex: 1 }} />
         <div
           className="relative flex flex-col items-center min-h-[600px] px-8 md:px-[80px] pt-[96px] pb-12 gap-8"
@@ -172,7 +183,7 @@ export default function Hero() {
             </div>
             <div className="flex flex-col items-center gap-2 text-center">
               <svg className="shrink-0 size-[24px]" fill="none" viewBox="0 0 24 24"><path d={svgPaths.p3d476500} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" /></svg>
-              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">Cobertura en todo Miranda y La Guaira</span>
+              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">Cobertura en Miranda, La Guaira y Caracas</span>
             </div>
           </div>
         </div>

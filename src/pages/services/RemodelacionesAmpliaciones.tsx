@@ -8,8 +8,6 @@ export default function RemodelacionesAmpliaciones() {
   return (
     <ServicePageLayout
       title="Remodelaciones y Ampliaciones"
-      metaTitle="Remodelaciones y Ampliaciones | Ing. Juan Carlos Mogollón"
-      metaDescription="Remodelación y ampliación de viviendas, oficinas y locales comerciales en Venezuela. Transformamos y modernizamos espacios con cálculos de ingeniería rigurosos."
       intro="Transformamos y ampliamos espacios existentes con soluciones de ingeniería que maximizan la funcionalidad, el confort y el valor de tu propiedad, con cálculos estructurales rigurosos en cada proyecto."
       iconSrc={icoRemodelaciones}
       whatWeOffer="Atendemos proyectos de remodelación y ampliación para viviendas, oficinas y locales comerciales. Cada intervención parte de un análisis técnico del estado actual de la edificación para garantizar que los nuevos trabajos sean estructuralmente seguros y compatibles con la construcción existente."

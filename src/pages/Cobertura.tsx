@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
-import heroBg from "@/imports/ObrasCivilesLanding/6441610d805bf023ff7bc582a38d3531b1c0d4ec.png";
+import { useWhatsApp } from "@/components/WhatsAppModal";
+import heroBgWebP from "@/imports/ObrasCivilesLanding/hero-desktop.webp";
+import footingBg from "@/imports/72286.webp";
+import { applyPageSeo, resetPageSeo } from "@/utils/seo";
+import { getRouteMeta } from "@/utils/prerender-meta";
 
 const areas = [
   {
@@ -57,11 +61,28 @@ function ZoneMap() {
 }
 
 export default function Cobertura() {
+  const { trigger, modal } = useWhatsApp();
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ingenierocivilvenezuela.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Cobertura", "item": "https://ingenierocivilvenezuela.com/cobertura" },
+    ],
+  };
+
   useEffect(() => {
-    document.title = "Cobertura | Ingeniería Civil | Ing. Juan Carlos Mogollón";
+    const m = getRouteMeta("/cobertura");
+    applyPageSeo({ title: m.title, description: m.description, path: "/cobertura" });
+    return () => {
+      resetPageSeo();
+    };
   }, []);
 
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {modal}
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="bg-[#f8f9fa] border-b border-[#e9ecef] px-4 sm:px-8 md:px-[80px] py-3">
@@ -74,8 +95,11 @@ export default function Cobertura() {
 
       {/* Page hero */}
       <div className="relative px-4 sm:px-8 md:px-[80px] py-16 sm:py-24 overflow-hidden">
-        <img src={heroBg} alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }} />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.72)", zIndex: 1 }} />
+        <picture>
+          <source srcSet={heroBgWebP} type="image/webp" />
+          <img src={heroBgWebP} alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }} />
+        </picture>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)", zIndex: 1 }} />
         <div className="relative max-w-[780px] flex flex-col gap-5" style={{ zIndex: 2 }}>
           <div className="inline-flex items-center gap-2">
             <div className="w-8 h-[3px] bg-[#ffd200]" />
@@ -86,8 +110,8 @@ export default function Cobertura() {
           <h1 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-white text-[clamp(28px,5vw,52px)] leading-[1.1]">
             Cobertura
           </h1>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[15px] sm:text-[18px] leading-[1.7] max-w-[640px]">
-            Prestamos servicios de ingeniería civil, construcción, remodelación, avalúos y peritajes técnicos principalmente en el Distrito Capital, el estado Miranda y el estado La Guaira, sujeto al alcance y las características de cada proyecto.
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd200] text-[15px] sm:text-[18px] leading-[1.7] max-w-[640px]">
+            Prestamos servicios de ingeniería civil, construcción, remodelación, avalúos técnicos y peritajes judiciales principalmente en el Distrito Capital, el estado Miranda y el estado La Guaira, sujeto al alcance y las características de cada proyecto.
           </p>
         </div>
       </div>
@@ -130,46 +154,49 @@ export default function Cobertura() {
               Si tu proyecto se encuentra fuera de nuestra zona principal de atención, contáctanos para evaluar el alcance, ubicación y condiciones particulares del servicio.
             </p>
           </div>
-          <a
-            href="https://wa.me/584141242017"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[14px] sm:text-[15px] w-full sm:w-auto"
+          <button
+            onClick={trigger}
+            className="shrink-0 inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[14px] sm:text-[15px] w-full sm:w-auto border-none cursor-pointer"
           >
             Consultar disponibilidad
-          </a>
+          </button>
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="bg-[#111315] px-4 sm:px-8 md:px-[80px] py-12 sm:py-16">
-        <div className="max-w-[1100px] mx-auto flex flex-col items-center gap-6 text-center">
+      {/* CTA — footing image with same 60% overlay as homepage */}
+      <section
+        className="relative w-full"
+        style={{
+          backgroundImage: `url(${footingBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-[rgba(20,20,20,0.60)] pointer-events-none" />
+        <div className="relative flex flex-col items-center gap-6 text-center px-4 sm:px-8 md:px-[80px] py-12 sm:py-16">
           <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-white text-[clamp(20px,3.5vw,34px)] leading-[1.2]">
             ¿Hablamos de tu proyecto?
           </h2>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[14px] sm:text-[16px] leading-[1.7] max-w-[560px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd200] text-[14px] sm:text-[16px] leading-[1.7] max-w-[560px]">
             Cuéntanos dónde se encuentra tu proyecto y qué necesitas desarrollar. Evaluaremos la solicitud y te indicaremos cómo podemos ayudarte.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <a
-              href="https://wa.me/584141242017"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]"
+            <button
+              onClick={trigger}
+              className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px] border-none cursor-pointer"
             >
               Solicitar Presupuesto
-            </a>
+            </button>
             <a
-              href="https://wa.me/584141242017"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="tel:+584141242017"
               className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[#ffd200] rounded-[8px] px-7 py-4 text-white hover:bg-[#1e2124] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]"
             >
-              Escríbenos por WhatsApp
+              Llámanos Ahora Mismo
             </a>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Back */}
       <div className="bg-[#f8f9fa] border-t border-[#e9ecef] px-4 sm:px-8 md:px-[80px] py-5">
@@ -178,5 +205,6 @@ export default function Cobertura() {
         </Link>
       </div>
     </div>
+    </>
   );
 }

@@ -8,8 +8,6 @@ export default function ConstruccionObrasCiviles() {
   return (
     <ServicePageLayout
       title="Construcción de Obras Civiles"
-      metaTitle="Construcción de Obras Civiles | Ing. Juan Carlos Mogollón"
-      metaDescription="Servicios de construcción de obras civiles residenciales, comerciales e infraestructura en Venezuela, con más de 30 años de experiencia y cumplimiento de normativas COVENIN."
       intro="Ejecutamos proyectos de construcción desde sus fundaciones hasta los acabados finales, con supervisión técnica permanente y estricto cumplimiento de las normativas COVENIN aplicables."
       iconSrc={icoConstruccion}
       whatWeOffer="Ofrecemos servicios de construcción para proyectos residenciales, comerciales e infraestructura pública. Cada obra es supervisada por el Ing. Juan Carlos Mogollón, con más de 30 años de trayectoria en la ejecución de obras civiles en Venezuela."
@@ -19,7 +17,7 @@ export default function ConstruccionObrasCiviles() {
           description: "Diseño y construcción de fundaciones superficiales y profundas adaptadas a las condiciones del terreno y la carga de la estructura.",
         },
         {
-          title: "Estructuras de concreto armado",
+          title: "Proyectos estructurales en acero y de concreto armado",
           description: "Ejecución de columnas, vigas, losas y muros estructurales conforme a los planos aprobados y normativas vigentes.",
         },
         {

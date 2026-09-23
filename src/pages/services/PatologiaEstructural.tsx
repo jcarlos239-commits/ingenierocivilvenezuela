@@ -8,8 +8,6 @@ export default function PatologiaEstructural() {
   return (
     <ServicePageLayout
       title="Patología Estructural"
-      metaTitle="Patología Estructural | Ing. Juan Carlos Mogollón"
-      metaDescription="Evaluación de patologías en edificaciones, diagnóstico de daños estructurales, corrosión del concreto armado y recomendaciones de reparación en Venezuela."
       intro="Evaluamos el estado de edificaciones con daños o deterioro estructural, identificamos sus causas y elaboramos recomendaciones técnicas orientadas a la reparación y rehabilitación de los elementos afectados."
       iconSrc={icoPatologia}
       whatWeOffer="La evaluación de patologías estructurales permite conocer el estado real de una edificación, entender las causas del deterioro y definir las intervenciones necesarias. El Ing. Juan Carlos Mogollón cuenta con conocimientos en patología de edificaciones aplicados a una amplia variedad de casos en Venezuela."

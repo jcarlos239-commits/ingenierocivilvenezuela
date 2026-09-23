@@ -1,0 +1,23 @@
+{
+  "name": "Obras Civiles en Venezuela | Ing. Juan Carlos Mogollón",
+  "short_name": "Obras Civiles Venezuela",
+  "description": "Construcción, remodelaciones y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111315",
+  "theme_color": "#111315",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -8,8 +8,6 @@ export default function Proyectos() {
   return (
     <ServicePageLayout
       title="Proyectos"
-      metaTitle="Proyectos de Ingeniería Civil | Ing. Juan Carlos Mogollón"
-      metaDescription="Servicios de proyectos de ingeniería civil: cálculo estructural, arquitectura, instalaciones, estudios geotécnicos, presupuestos APU y gestión de permisologías en Venezuela."
       intro="Desarrollamos proyectos integrales de ingeniería civil, desde la concepción del diseño hasta la gestión de la documentación legal y técnica necesaria para ejecutar tu obra con respaldo profesional."
       iconSrc={icoProyectos}
       whatWeOffer="Nuestros servicios de proyectos abarcan todas las etapas técnicas y administrativas que requiere una obra civil: el diseño, los cálculos, las instalaciones y los trámites ante los organismos competentes. Trabajamos en coordinación con firmas de ingeniería avaladas por el Colegio de Ingenieros de Venezuela."
@@ -54,7 +52,7 @@ export default function Proyectos() {
       relatedServices={[
         { title: "Construcción de Obras Civiles", path: "/servicios/construccion-obras-civiles", icon: icoConstruccion },
         { title: "Remodelaciones y Ampliaciones", path: "/servicios/remodelaciones-ampliaciones", icon: icoRemodelaciones },
-        { title: "Avalúos y Peritajes Técnicos", path: "/servicios/avaluos-peritajes-tecnicos", icon: icoAvaluos },
+        { title: "Avalúos Técnicos y Peritajes Judiciales", path: "/servicios/avaluos-peritajes-tecnicos", icon: icoAvaluos },
       ]}
     />
   );

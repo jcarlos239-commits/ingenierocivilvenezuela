@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
-import imgBg from "@/imports/72286.jpg";
+import imgBg from "@/imports/72286.webp";
+import { useWhatsApp } from "./WhatsAppModal";
 
 const PHONE_TEL = "tel:+584141242017";
 
@@ -39,6 +40,7 @@ function PhoneIcon() {
 }
 
 export default function CoverageAndCta() {
+  const { trigger, modal } = useWhatsApp();
   return (
     /*
      * Background-image on the section itself so it always covers 100% of the
@@ -46,6 +48,8 @@ export default function CoverageAndCta() {
      * An absolutely-positioned <img> only fills the nearest positioned ancestor's
      * *current* height, which leaves a gray gap when the section grows.
      */
+    <>
+      {modal}
     <section
       id="cobertura"
       className="relative w-full"
@@ -64,7 +68,7 @@ export default function CoverageAndCta() {
         <div className="flex flex-col gap-3 sm:gap-4 items-center text-center">
           <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[10px] sm:text-[12px] uppercase tracking-wide">DISPONIBILIDAD INMEDIATA</p>
           <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-white text-[clamp(20px,3.5vw,32px)] leading-[1.2] w-full">
-            Cobertura en todo el Estado Miranda y La Guaira
+            Cobertura en todo el Estado Miranda, La Guaira y Distrito Capital
           </h2>
           <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd100] text-[14px] sm:text-[16px] leading-[1.5] w-full">
             Desplegamos nuestros equipos de inspección y cuadrillas de construcción rápidamente en las principales zonas de la capital:
@@ -89,15 +93,13 @@ export default function CoverageAndCta() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-stretch sm:items-center w-full sm:w-auto">
-            <a
-              href="https://wa.me/584141242017"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-[10px] bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors min-h-[52px]"
+            <button
+              onClick={trigger}
+              className="flex items-center justify-center gap-[10px] bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors min-h-[52px] border-none cursor-pointer"
             >
               <WhatsAppIcon />
               <span className="font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]">Escríbenos por WhatsApp</span>
-            </a>
+            </button>
             <a
               href={PHONE_TEL}
               className="flex items-center justify-center gap-[10px] bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-6 py-4 text-white hover:bg-[#1e2124] transition-colors min-h-[52px]"
@@ -109,5 +111,6 @@ export default function CoverageAndCta() {
         </div>
       </div>
     </section>
+    </>
   );
 }

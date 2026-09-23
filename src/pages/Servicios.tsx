@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
-import heroBg from "@/imports/ObrasCivilesLanding/6441610d805bf023ff7bc582a38d3531b1c0d4ec.png";
+import { useWhatsApp } from "@/components/WhatsAppModal";
+import heroBgWebP from "@/imports/ObrasCivilesLanding/hero-desktop.webp";
+import { applyPageSeo, resetPageSeo } from "@/utils/seo";
+import { getRouteMeta } from "@/utils/prerender-meta";
+import footingBg from "@/imports/72286.webp";
 import icoConstruccion from "@/imports/72947.png";
 import icoRemodelaciones from "@/imports/72948.png";
 import icoAvaluos from "@/imports/72949.png";
@@ -29,8 +33,8 @@ const services = [
   },
   {
     icon: icoAvaluos,
-    title: "Avalúos y Peritajes Técnicos",
-    description: "Avalúos de bienes inmuebles, peritajes técnicos e informes especializados para trámites legales, bancarios y administrativos.",
+    title: "Avalúos Técnicos y Peritajes Judiciales",
+    description: "Avalúos técnicos de bienes inmuebles y peritajes judiciales con elaboración de informes para trámites legales, bancarios y administrativos.",
     path: "/servicios/avaluos-peritajes-tecnicos",
   },
   {
@@ -58,23 +62,33 @@ const pillars = [
   },
   {
     label: "Evaluación",
-    description: "Avalúos, peritajes técnicos, inspecciones y diagnóstico de patologías.",
+    description: "Avalúos técnicos, peritajes judiciales, inspecciones y diagnóstico de patologías.",
   },
 ];
 
 export default function Servicios() {
+  const { trigger, modal } = useWhatsApp();
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ingenierocivilvenezuela.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://ingenierocivilvenezuela.com/servicios" },
+    ],
+  };
+
   useEffect(() => {
-    document.title = "Servicios de Ingeniería Civil | Ing. Juan Carlos Mogollón";
-    let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      document.head.appendChild(meta);
-    }
-    meta.content = "Servicios de ingeniería civil, construcción, remodelaciones, ampliaciones, avalúos, peritajes técnicos, proyectos y soluciones especializadas.";
+    const m = getRouteMeta("/servicios");
+    applyPageSeo({ title: m.title, description: m.description, path: "/servicios" });
+    return () => {
+      resetPageSeo();
+    };
   }, []);
 
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {modal}
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="bg-[#f8f9fa] border-b border-[#e9ecef] px-4 sm:px-8 md:px-[80px] py-3">
@@ -87,8 +101,11 @@ export default function Servicios() {
 
       {/* Hero */}
       <div className="relative px-4 sm:px-8 md:px-[80px] py-16 sm:py-24 overflow-hidden">
-        <img src={heroBg} alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }} />
-        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.72)", zIndex: 1 }} />
+        <picture>
+          <source srcSet={heroBgWebP} type="image/webp" />
+          <img src={heroBgWebP} alt="" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }} />
+        </picture>
+        <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)", zIndex: 1 }} />
         <div className="relative max-w-[780px] flex flex-col gap-5" style={{ zIndex: 2 }}>
           <div className="inline-flex items-center gap-2">
             <div className="w-8 h-[3px] bg-[#ffd200]" />
@@ -99,8 +116,8 @@ export default function Servicios() {
           <h1 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-white text-[clamp(28px,5vw,52px)] leading-[1.1]">
             Nuestros Servicios
           </h1>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[15px] sm:text-[18px] leading-[1.7] max-w-[640px]">
-            Ofrecemos servicios integrales de ingeniería civil, construcción, remodelación, ampliación, avalúos y peritajes técnicos, proyectos de arquitectura y soluciones especializadas para edificaciones y terrenos.
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd200] text-[15px] sm:text-[18px] leading-[1.7] max-w-[640px]">
+            Ofrecemos servicios integrales de ingeniería civil, construcción, remodelación, ampliación, avalúos tecnicos y peritajes judiciales, proyectos de arquitectura y soluciones especializadas para edificaciones y terrenos.
           </p>
         </div>
       </div>
@@ -117,31 +134,25 @@ export default function Servicios() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {services.map((s) => (
               <Link
                 key={s.path}
                 to={s.path}
-                className="group bg-white rounded-[12px] border border-[#e9ecef] hover:border-[#ffd200] hover:shadow-md transition-all flex flex-col"
+                className="group bg-white rounded-[16px] border border-[#e9ecef] hover:border-[#ffd200] hover:shadow-lg transition-all flex flex-col items-center text-center px-5 py-8 gap-5 drop-shadow-[0px_8px_8px_rgba(0,0,0,0.04)]"
               >
-                <div className="flex flex-col gap-5 items-start p-6 sm:p-8 h-full">
-                  <img
-                    src={s.icon}
-                    alt={s.title}
-                    style={{ width: 64, height: 64, objectFit: "contain", display: "block", flexShrink: 0 }}
-                  />
-                  <div className="flex flex-col gap-[10px] flex-1">
-                    <h3 className="font-['Unbounded:Bold',sans-serif] font-bold text-[#111315] text-[14px] sm:text-[15px] leading-normal">
-                      {s.title}
-                    </h3>
-                    <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[13px] sm:text-[14px] leading-[1.5]">
-                      {s.description}
-                    </p>
-                  </div>
-                  <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ffd200] text-[12px] sm:text-[13px] opacity-0 group-hover:opacity-100 transition-opacity pt-1">
-                    Ver servicio →
-                  </span>
-                </div>
+                <img
+                  src={s.icon}
+                  alt={s.title}
+                  loading="lazy"
+                  style={{ width: 80, height: 80, objectFit: "contain", display: "block" }}
+                />
+                <h3 className="font-['Unbounded:Bold',sans-serif] font-bold text-[#111315] text-[13px] sm:text-[14px] leading-snug">
+                  {s.title}
+                </h3>
+                <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ffd200] text-[13px] group-hover:underline transition-all">
+                  Ver más →
+                </span>
               </Link>
             ))}
           </div>
@@ -177,35 +188,41 @@ export default function Servicios() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="bg-[#111315] px-4 sm:px-8 md:px-[80px] py-12 sm:py-16">
-        <div className="max-w-[1100px] mx-auto flex flex-col items-center gap-6 text-center">
+      {/* CTA — footing image with same 60% overlay as homepage */}
+      <section
+        className="relative w-full"
+        style={{
+          backgroundImage: `url(${footingBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-[rgba(20,20,20,0.60)] pointer-events-none" />
+        <div className="relative flex flex-col items-center gap-6 text-center px-4 sm:px-8 md:px-[80px] py-12 sm:py-16">
           <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-white text-[clamp(20px,3.5vw,34px)] leading-[1.2]">
             ¿Tienes un proyecto en mente?
           </h2>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[14px] sm:text-[16px] leading-[1.7] max-w-[560px]">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ffd200] text-[14px] sm:text-[16px] leading-[1.7] max-w-[560px]">
             Cuéntanos qué necesitas desarrollar y evaluaremos el alcance de tu proyecto para orientarte sobre el servicio adecuado.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <a
-              href="https://wa.me/584141242017"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]"
+            <button
+              onClick={trigger}
+              className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px] border-none cursor-pointer"
             >
               Solicitar Presupuesto
-            </a>
+            </button>
             <a
-              href="https://wa.me/584141242017"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="tel:+584141242017"
               className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[#ffd200] rounded-[8px] px-7 py-4 text-white hover:bg-[#1e2124] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]"
             >
-              Escríbenos por WhatsApp
+              Llámanos Ahora Mismo
             </a>
           </div>
         </div>
-      </div>
+      </section>
     </div>
+    </>
   );
 }

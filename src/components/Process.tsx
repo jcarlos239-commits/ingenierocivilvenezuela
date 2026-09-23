@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { useWhatsApp } from "./WhatsAppModal";
 
 interface StepProps {
   number: string;
@@ -49,9 +50,12 @@ const steps = [
 ];
 
 export default function Process() {
+  const { trigger, modal } = useWhatsApp();
   return (
+    <>
+      {modal}
     <section id="proceso" className="bg-[#f8f9fa] w-full">
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-start lg:items-center px-4 sm:px-8 md:px-[80px] pt-6 pb-10 sm:py-[60px]">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-start lg:items-center px-4 sm:px-8 md:px-[80px] pt-4 pb-10 sm:pt-8 sm:pb-[60px]">
         {/* Left column */}
         <div className="flex flex-col gap-5 sm:gap-6 w-full lg:w-[500px] lg:shrink-0">
           <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#e0bc00] text-[10px] sm:text-[12px] uppercase tracking-wide">NUESTRO MÉTODO</p>
@@ -59,14 +63,12 @@ export default function Process() {
           <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[14px] sm:text-[16px] leading-[1.6]">
             Diseñamos un proceso ágil y transparente desde el primer contacto para que conozcas el estatus real de tu obra en cada fase.
           </p>
-          <a
-            href="https://wa.me/584141242017"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-[10px] bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors self-start min-h-[52px]"
+          <button
+            onClick={trigger}
+            className="inline-flex items-center justify-center gap-[10px] bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors self-start min-h-[52px] border-none cursor-pointer"
           >
             <span className="font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]">Solicitar Presupuesto</span>
-          </a>
+          </button>
           <Link
             to="/como-trabajamos"
             className="inline-flex items-center gap-2 text-[#111315] hover:text-[#ffd200] transition-colors font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] sm:text-[14px] self-start"
@@ -83,5 +85,6 @@ export default function Process() {
         </div>
       </div>
     </section>
+    </>
   );
 }

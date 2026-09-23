@@ -8,11 +8,9 @@ export default function EstabilizacionTaludes() {
   return (
     <ServicePageLayout
       title="Estabilización de Taludes"
-      metaTitle="Estabilización de Taludes | Ing. Juan Carlos Mogollón"
-      metaDescription="Diseño y construcción de soluciones de estabilización de taludes: terraceo, bermas, muros de contención cantiléver y de gravedad en Venezuela."
       intro="Diseñamos y desarrollamos soluciones técnicas para la estabilización de terrenos en pendiente, incorporando medidas estructurales y de mitigación de riesgos geológicos adaptadas a las condiciones de cada sitio."
       iconSrc={icoEstabilizacion}
-      whatWeOffer="La estabilización de taludes requiere una evaluación técnica precisa del terreno y la definición de soluciones estructurales adecuadas. Desarrollamos proyectos que combinan técnicas de terraceo, muros de contención y sistemas de drenaje para garantizar la estabilidad a largo plazo."
+      whatWeOffer="La estabilización de taludes requiere una evaluación técnica precisa del terreno y la definición de soluciones estructurales adecuadas. Desarrollamos proyectos que combinan técnicas de terraceo, muros de contención de concreto armado y sistemas de drenaje para garantizar la estabilidad a largo plazo."
       items={[
         {
           title: "Evaluación de terrenos en pendiente",
@@ -33,6 +31,10 @@ export default function EstabilizacionTaludes() {
         {
           title: "Muros de gravedad",
           description: "Soluciones de contención basadas en el peso propio del muro, utilizando mampostería o concreto ciclópeo según el caso.",
+        },
+        {
+          title: "Muros de Hormigón Ciclópeo",
+          description: "Construcción de muros de contención en hormigón ciclópeo, incorporando piedras de gran tamaño embebidas en la mezcla para optimizar el uso de materiales y garantizar la estabilidad del talud.",
         },
         {
           title: "Sistemas de drenaje",

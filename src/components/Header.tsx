@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router";
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
+import { useWhatsApp } from "./WhatsAppModal";
 
 const PHONE_TEL = "tel:+584141242017";
 
@@ -8,7 +9,7 @@ const serviceLinks = [
   { label: "Proyectos", to: "/servicios/proyectos" },
   { label: "Construcción de Obras Civiles", to: "/servicios/construccion-obras-civiles" },
   { label: "Remodelaciones y Ampliaciones", to: "/servicios/remodelaciones-ampliaciones" },
-  { label: "Avalúos y Peritajes Técnicos", to: "/servicios/avaluos-peritajes-tecnicos" },
+  { label: "Avalúos Técnicos y Peritajes Judiciales", to: "/servicios/avaluos-peritajes-tecnicos" },
   { label: "Patología Estructural", to: "/servicios/patologia-estructural" },
   { label: "Estabilización de Taludes", to: "/servicios/estabilizacion-taludes" },
 ];
@@ -98,14 +99,17 @@ function ServicesDropdown() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const { trigger, modal } = useWhatsApp();
 
   const otherLinks: { label: string; href?: string; to?: string }[] = [
     { label: "Cómo Trabajamos", to: "/como-trabajamos" },
     { label: "Cobertura", to: "/cobertura" },
-    { label: "Contacto", href: "/#contacto" },
+    { label: "Blog", href: "/#contacto" },
   ];
 
   return (
+    <>
+      {modal}
     <header className="sticky top-0 z-50 h-[64px] sm:h-[80px] w-full" data-name="navigation-bar">
       <div className="absolute inset-0 bg-[rgba(17,19,21,0.6)] pointer-events-none" />
 
@@ -234,14 +238,12 @@ export default function Header() {
           )}
 
           <div className="p-4 flex flex-col gap-3">
-            <a
-              href="https://wa.me/584141242017"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-4 py-4 text-white font-['Inter:Bold',sans-serif] font-bold text-[15px] min-h-[52px]"
+            <button
+              onClick={trigger}
+              className="flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-4 py-4 text-white font-['Inter:Bold',sans-serif] font-bold text-[15px] min-h-[52px] border-none cursor-pointer w-full"
             >
               Escríbenos por WhatsApp
-            </a>
+            </button>
             <a
               href={PHONE_TEL}
               className="flex items-center justify-center gap-2 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-4 py-4 text-white font-['Inter:Bold',sans-serif] font-bold text-[15px] min-h-[52px]"
@@ -252,5 +254,6 @@ export default function Header() {
         </div>
       )}
     </header>
+    </>
   );
 }
