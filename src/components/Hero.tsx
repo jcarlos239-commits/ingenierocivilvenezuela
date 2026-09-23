@@ -89,7 +89,7 @@ export default function Hero() {
       <div className="sm:hidden flex flex-col">
 
         {/* Dark top block: badge + h1 */}
-        <div className="bg-[#111315] px-4 pt-[80px] pb-0 flex flex-col items-center gap-3">
+        <div className="bg-[#111315] px-4 pt-[80px] pb-6 flex flex-col items-center gap-3">
           <div className="border border-[#ffd200] rounded-[4px] px-4 py-[7px]">
             <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[9px] text-center leading-snug tracking-wide whitespace-nowrap">
               INGENIERÍA CIVIL Y CONSTRUCCIÓN EN VENEZUELA
@@ -126,7 +126,7 @@ export default function Hero() {
         </div>
 
         {/* Dark bottom block: button then trust badges (same order as desktop) */}
-        <div className="bg-[#111315] px-4 pt-5 pb-5 flex flex-col gap-4">
+        <div className="bg-[#111315] px-4 pt-9 pb-5 flex flex-col gap-7">
           <a
             href={PHONE_TEL}
             className="flex items-center justify-center gap-3 bg-[#111315] border-2 border-[#ffd200] rounded-[8px] px-5 py-4 text-white hover:bg-[#1e2124] transition-colors min-h-[56px] w-full"
