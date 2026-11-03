@@ -9,7 +9,7 @@ import { getRouteMeta } from "@/utils/prerender-meta";
 export default function Home() {
   useEffect(() => {
     const m = getRouteMeta("/");
-    applyPageSeo({ title: m.title, description: m.description, path: "/" });
+    applyPageSeo(m);
     return () => resetPageSeo();
   }, []);
 

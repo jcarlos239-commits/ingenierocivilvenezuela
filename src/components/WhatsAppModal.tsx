@@ -1,6 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef, type MouseEvent as ReactMouseEvent } from "react";
+import { createPortal } from "react-dom";
 
 const WA_URL = "https://wa.me/584141242017";
+const DIALOG_ID = "whatsapp-contact-dialog";
+const DIALOG_TITLE_ID = "whatsapp-contact-dialog-title";
+const DIALOG_DESCRIPTION_ID = "whatsapp-contact-dialog-description";
+const triggerProps = {
+  type: "button" as const,
+  "aria-haspopup": "dialog" as const,
+  "aria-controls": DIALOG_ID,
+};
 
 interface ModalProps {
   onConfirm: () => void;
@@ -8,13 +17,58 @@ interface ModalProps {
 }
 
 function Modal({ onConfirm, onCancel }: ModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const firstActionRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onCancel(); };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    const appRoot = document.getElementById("root");
+    const rootWasInert = appRoot?.inert ?? false;
+    if (appRoot) appRoot.inert = true;
+
+    const focusFrame = requestAnimationFrame(() => firstActionRef.current?.focus());
+
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        onCancel();
+        return;
+      }
+
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusableElements = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+
+      if (!firstElement || !lastElement) {
+        event.preventDefault();
+        dialogRef.current.focus();
+        return;
+      }
+
+      if (event.shiftKey && (document.activeElement === firstElement || !dialogRef.current.contains(document.activeElement))) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKey, { capture: true });
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", onKey, { capture: true });
+      if (appRoot) appRoot.inert = rootWasInert;
+    };
   }, [onCancel]);
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[10000] flex items-center justify-center px-4"
       onClick={onCancel}
@@ -24,7 +78,14 @@ function Modal({ onConfirm, onCancel }: ModalProps) {
 
       {/* Panel */}
       <div
-        className="relative bg-[#111315] border border-[#2c3035] rounded-[16px] p-8 max-w-[400px] w-full flex flex-col gap-6 shadow-2xl"
+        ref={dialogRef}
+        id={DIALOG_ID}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={DIALOG_TITLE_ID}
+        aria-describedby={DIALOG_DESCRIPTION_ID}
+        tabIndex={-1}
+        className="relative bg-[#111315] border border-[#2c3035] rounded-[16px] p-8 max-w-[400px] max-h-[calc(100dvh-2rem)] overflow-y-auto w-full flex flex-col gap-6 shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* Icon */}
@@ -44,10 +105,10 @@ function Modal({ onConfirm, onCancel }: ModalProps) {
 
         {/* Message */}
         <div className="flex flex-col gap-2 text-center">
-          <p className="font-['Unbounded:Bold',sans-serif] font-bold text-white text-[15px] sm:text-[16px] leading-snug">
+          <h2 id={DIALOG_TITLE_ID} className="font-['Unbounded:Bold',sans-serif] font-bold text-white text-[15px] sm:text-[16px] leading-snug">
             Toda consulta genera honorarios
-          </p>
-          <p className="font-['Inter:Regular',sans-serif] text-[#adb5bd] text-[13px] sm:text-[14px] leading-[1.5]">
+          </h2>
+          <p id={DIALOG_DESCRIPTION_ID} className="font-['Inter:Regular',sans-serif] text-[#adb5bd] text-[13px] sm:text-[14px] leading-[1.5]">
             ¿Deseas continuar hacia WhatsApp?
           </p>
         </div>
@@ -55,33 +116,55 @@ function Modal({ onConfirm, onCancel }: ModalProps) {
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-3">
           <button
+            ref={firstActionRef}
+            type="button"
             onClick={onCancel}
+            aria-label="Cancelar y cerrar ventana de WhatsApp"
             className="flex-1 inline-flex items-center justify-center bg-transparent border border-[#2c3035] hover:border-[#ffd200] rounded-[8px] px-5 py-3 text-[#adb5bd] hover:text-white transition-colors font-['Inter:Semi Bold',sans-serif] font-semibold text-[14px] cursor-pointer"
           >
             Cancelar
           </button>
           <button
+            type="button"
             onClick={onConfirm}
+            aria-label="Continuar a WhatsApp (se abre en una pestaña nueva)"
             className="flex-1 inline-flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1fb558] rounded-[8px] px-5 py-3 text-white transition-colors font-['Inter:Bold',sans-serif] font-bold text-[14px] cursor-pointer"
           >
             Continuar a WhatsApp
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
 export function useWhatsApp() {
   const [open, setOpen] = useState(false);
+  const triggerElementRef = useRef<HTMLElement | null>(null);
 
-  const trigger = useCallback(() => setOpen(true), []);
-  const cancel = useCallback(() => setOpen(false), []);
+  const restoreTriggerFocus = useCallback(() => {
+    const triggerElement = triggerElementRef.current;
+    requestAnimationFrame(() => {
+      if (triggerElement?.isConnected) triggerElement.focus();
+    });
+  }, []);
+
+  const trigger = useCallback((event?: ReactMouseEvent<HTMLElement>) => {
+    triggerElementRef.current = event?.currentTarget
+      ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    setOpen(true);
+  }, []);
+  const cancel = useCallback(() => {
+    setOpen(false);
+    restoreTriggerFocus();
+  }, [restoreTriggerFocus]);
   const confirm = useCallback(() => {
     setOpen(false);
     window.open(WA_URL, "_blank", "noopener,noreferrer");
-  }, []);
+    restoreTriggerFocus();
+  }, [restoreTriggerFocus]);
 
   const modal = open ? <Modal onConfirm={confirm} onCancel={cancel} /> : null;
-  return { trigger, modal };
+  return { trigger, triggerProps, modal };
 }

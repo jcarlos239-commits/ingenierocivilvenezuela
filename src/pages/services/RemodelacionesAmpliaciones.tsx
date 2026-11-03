@@ -1,8 +1,8 @@
 import ServicePageLayout from "./ServicePageLayout";
-import icoRemodelaciones from "@/imports/72948.png";
-import icoConstruccion from "@/imports/72947.png";
-import icoProyectos from "@/imports/72951.png";
-import icoPatologia from "@/imports/72950.png";
+import icoRemodelaciones from "@/imports/72948.webp";
+import icoConstruccion from "@/imports/72947-card.webp";
+import icoProyectos from "@/imports/72951-card.webp";
+import icoPatologia from "@/imports/72950-card.webp";
 
 export default function RemodelacionesAmpliaciones() {
   return (

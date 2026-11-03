@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router";
 import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
 import { useWhatsApp } from "./WhatsAppModal";
@@ -99,12 +99,44 @@ function ServicesDropdown() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const { trigger, modal } = useWhatsApp();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
+  const { trigger, triggerProps, modal } = useWhatsApp();
+
+  const closeMobileMenu = useCallback(() => {
+    setMenuOpen(false);
+    setServicesOpen(false);
+    requestAnimationFrame(() => menuButtonRef.current?.focus());
+  }, []);
+
+  const toggleMobileMenu = () => {
+    if (menuOpen) {
+      closeMobileMenu();
+    } else {
+      setMenuOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    firstMobileLinkRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMobileMenu();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [closeMobileMenu, menuOpen]);
 
   const otherLinks: { label: string; href?: string; to?: string }[] = [
     { label: "Cómo Trabajamos", to: "/como-trabajamos" },
-    { label: "Cobertura", to: "/cobertura" },
-    { label: "Blog", href: "/#contacto" },
+    { label: "Sobre Mí", to: "/sobre-mi" },
+    { label: "Blog", to: "/blog" },
   ];
 
   return (
@@ -121,7 +153,10 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-3">
+          <Link to="/" className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[14px] hover:text-white transition-colors">
+            Inicio
+          </Link>
           <ServicesDropdown />
           {otherLinks.map((l) =>
             l.to ? (
@@ -153,8 +188,12 @@ export default function Header() {
             <PhoneIcon size={18} />
           </a>
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Abrir menú"
+            ref={menuButtonRef}
+            type="button"
+            onClick={toggleMobileMenu}
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
             className="flex items-center justify-center text-white size-[40px]"
           >
             <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -177,10 +216,26 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#111315] border-t border-[#2c3035] flex flex-col z-40">
+        <nav
+          id="mobile-navigation"
+          aria-label="Navegación principal"
+          className="absolute top-full left-0 w-full bg-[#111315] border-t border-[#2c3035] flex flex-col z-40"
+        >
+          {/* Inicio */}
+          <Link
+            ref={firstMobileLinkRef}
+            to="/"
+            onClick={closeMobileMenu}
+            className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
+          >
+            Inicio
+          </Link>
           {/* Services accordion */}
           <button
+            type="button"
             onClick={() => setServicesOpen((v) => !v)}
+            aria-expanded={servicesOpen}
+            aria-controls="mobile-services-submenu"
             className="flex items-center justify-between font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px]"
           >
             Servicios
@@ -192,10 +247,10 @@ export default function Header() {
             </svg>
           </button>
           {servicesOpen && (
-            <div className="bg-[#0d0f11] flex flex-col border-b border-[#2c3035]">
+            <div id="mobile-services-submenu" className="bg-[#0d0f11] flex flex-col border-b border-[#2c3035]">
               <Link
                 to="/servicios"
-                onClick={() => { setMenuOpen(false); setServicesOpen(false); }}
+                onClick={closeMobileMenu}
                 className="flex items-center gap-2 px-7 py-3 font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[10px] uppercase tracking-wide hover:bg-[#1e2124] transition-colors"
               >
                 Ver todos →
@@ -204,7 +259,7 @@ export default function Header() {
                 <Link
                   key={s.to}
                   to={s.to}
-                  onClick={() => { setMenuOpen(false); setServicesOpen(false); }}
+                  onClick={closeMobileMenu}
                   className="flex items-center gap-3 px-7 py-3 font-['Inter:Regular',sans-serif] text-[#ced4da] text-[14px] hover:text-white hover:bg-[#1e2124] transition-colors border-t border-[#1e2124]"
                 >
                   <span className="w-[4px] h-[4px] rounded-full bg-[#ffd200] shrink-0" />
@@ -220,7 +275,7 @@ export default function Header() {
               <Link
                 key={l.to}
                 to={l.to}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMobileMenu}
                 className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
               >
                 {l.label}
@@ -229,7 +284,7 @@ export default function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMobileMenu}
                 className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[#ced4da] text-[15px] px-5 py-4 border-b border-[#2c3035] hover:text-white hover:bg-[#1e2124] transition-colors min-h-[52px] flex items-center"
               >
                 {l.label}
@@ -239,6 +294,7 @@ export default function Header() {
 
           <div className="p-4 flex flex-col gap-3">
             <button
+              {...triggerProps}
               onClick={trigger}
               className="flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-4 py-4 text-white font-['Inter:Bold',sans-serif] font-bold text-[15px] min-h-[52px] border-none cursor-pointer w-full"
             >
@@ -251,7 +307,7 @@ export default function Header() {
               Llámanos Ahora
             </a>
           </div>
-        </div>
+        </nav>
       )}
     </header>
     </>

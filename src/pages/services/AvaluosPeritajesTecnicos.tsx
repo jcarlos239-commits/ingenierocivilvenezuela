@@ -1,8 +1,8 @@
 import ServicePageLayout from "./ServicePageLayout";
-import icoAvaluos from "@/imports/72949.png";
-import icoProyectos from "@/imports/72951.png";
-import icoPatologia from "@/imports/72950.png";
-import icoConstruccion from "@/imports/72947.png";
+import icoAvaluos from "@/imports/72949.webp";
+import icoProyectos from "@/imports/72951-card.webp";
+import icoPatologia from "@/imports/72950-card.webp";
+import icoConstruccion from "@/imports/72947-card.webp";
 
 export default function AvaluosPeritajesTecnicos() {
   return (

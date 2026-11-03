@@ -1,8 +1,8 @@
 import ServicePageLayout from "./ServicePageLayout";
-import icoPatologia from "@/imports/72950.png";
-import icoConstruccion from "@/imports/72947.png";
-import icoRemodelaciones from "@/imports/72948.png";
-import icoEstabilizacion from "@/imports/72952.png";
+import icoPatologia from "@/imports/72950.webp";
+import icoConstruccion from "@/imports/72947-card.webp";
+import icoRemodelaciones from "@/imports/72948-card.webp";
+import icoEstabilizacion from "@/imports/72952-card.webp";
 
 export default function PatologiaEstructural() {
   return (

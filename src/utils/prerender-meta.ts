@@ -1,74 +1,146 @@
-const BASE_URL = "https://ingenierocivilvenezuela.com";
+import { articles, type Article } from "../data/articles"
+
+const BASE_URL = "https://ingenierocivilvenezuela.com"
 
 export interface RouteMeta {
-  title: string;
-  description: string;
-  canonical: string;
+  title: string
+  description: string
+  canonical: string
+  /**
+   * Set only when an editor can supply a genuine content revision date.
+   * It is optional so sitemap generation never substitutes a build date.
+   */
+  lastModified?: string
 }
+
+export const notFoundMeta = {
+  title: "Página no encontrada | Obras Civiles en Venezuela",
+  description:
+    "La página que busca no está disponible. Consulte nuestros servicios de ingeniería civil en Caracas, Miranda y La Guaira.",
+} as const
 
 export const routeMeta: Record<string, RouteMeta> = {
   "/": {
     title: "Obras Civiles en Venezuela | Ing. Juan Carlos Mogollón",
     description:
-      "Ingeniería civil, construcción de obras civiles, remodelaciones, avalúos técnicos y peritajes judiciales en Venezuela. Ing. Juan Carlos Mogollón, más de 30 años de trayectoria.",
+      "Ingeniería civil en Caracas, Miranda y La Guaira: construcción, remodelaciones, avalúos y peritajes con el Ing. Juan Carlos Mogollón.",
     canonical: `${BASE_URL}/`,
   },
   "/servicios": {
-    title: "Servicios de Ingeniería Civil | Ing. Juan Carlos Mogollón",
+    title:
+      "Servicios de Ingeniería Civil en Caracas | Ing. Juan Carlos Mogollón",
     description:
-      "Servicios de ingeniería civil, construcción, remodelaciones, ampliaciones, avalúos técnicos y peritajes judiciales, proyectos y soluciones especializadas en Venezuela.",
+      "Servicios de ingeniería civil en Caracas, Miranda y La Guaira: construcción, remodelaciones, avalúos, patología estructural y taludes.",
     canonical: `${BASE_URL}/servicios`,
   },
   "/como-trabajamos": {
-    title: "Cómo Trabajamos | Ing. Juan Carlos Mogollón",
+    title: "Cómo Trabajamos | Ingeniería Civil y Construcción",
     description:
-      "Conoce el proceso de trabajo del Ing. Juan Carlos Mogollón: consulta inicial, inspección técnica, propuesta, ejecución y entrega de obras civiles en Venezuela.",
+      "Conozca nuestro proceso: consulta, inspección técnica, propuesta, ejecución y entrega de proyectos en Caracas, Miranda y La Guaira.",
     canonical: `${BASE_URL}/como-trabajamos`,
   },
-  "/cobertura": {
-    title: "Cobertura | Ingeniería Civil | Ing. Juan Carlos Mogollón",
+  "/sobre-mi": {
+    title: "Sobre Mí | Ing. Juan Carlos Mogollón — Ingeniero Civil",
     description:
-      "Área de cobertura del Ing. Juan Carlos Mogollón: servicios de ingeniería civil en Distrito Capital, Miranda y La Guaira, Venezuela.",
-    canonical: `${BASE_URL}/cobertura`,
+      "Ing. Juan Carlos Mogollón, ingeniero civil con más de 30 años de experiencia en construcción, patología estructural y gerencia de obras.",
+    canonical: `${BASE_URL}/sobre-mi`,
   },
   "/servicios/proyectos": {
     title: "Proyectos de Ingeniería Civil | Ing. Juan Carlos Mogollón",
     description:
-      "Servicios de proyectos de ingeniería civil: cálculo estructural, arquitectura, instalaciones, estudios geotécnicos, presupuestos APU y gestión de permisologías en Venezuela.",
+      "Proyectos de ingeniería civil en Caracas, Miranda y La Guaira: cálculo estructural, arquitectura, instalaciones, estudios geotécnicos y presupuestos APU.",
     canonical: `${BASE_URL}/servicios/proyectos`,
   },
   "/servicios/construccion-obras-civiles": {
-    title: "Construcción de Obras Civiles | Ing. Juan Carlos Mogollón",
+    title:
+      "Construcción de Obras Civiles en Caracas | Ing. Juan Carlos Mogollón",
     description:
-      "Servicios de construcción de obras civiles residenciales, comerciales e infraestructura en Venezuela, con más de 30 años de experiencia y cumplimiento de normativas COVENIN.",
+      "Construcción de obras civiles residenciales y comerciales en Caracas, Miranda y La Guaira, con experiencia y respaldo de ingeniería civil.",
     canonical: `${BASE_URL}/servicios/construccion-obras-civiles`,
   },
   "/servicios/remodelaciones-ampliaciones": {
-    title: "Remodelaciones y Ampliaciones | Ing. Juan Carlos Mogollón",
+    title:
+      "Remodelaciones y Ampliaciones en Caracas | Ing. Juan Carlos Mogollón",
     description:
-      "Remodelación y ampliación de viviendas, oficinas y locales comerciales en Venezuela. Transformamos y modernizamos espacios con cálculos de ingeniería rigurosos.",
+      "Remodelación y ampliación de viviendas, oficinas y locales en Caracas, Miranda y La Guaira, con planificación y criterio de ingeniería.",
     canonical: `${BASE_URL}/servicios/remodelaciones-ampliaciones`,
   },
   "/servicios/avaluos-peritajes-tecnicos": {
-    title: "Avalúos Técnicos y Peritajes Judiciales | Ing. Juan Carlos Mogollón",
+    title:
+      "Avalúos Técnicos y Peritajes Judiciales | Ing. Juan Carlos Mogollón",
     description:
-      "Servicios de avalúos técnicos de bienes inmuebles y peritajes judiciales con elaboración de informes periciales para trámites legales, bancarios y administrativos en Venezuela.",
+      "Avalúos técnicos de inmuebles y peritajes judiciales en Caracas, Miranda y La Guaira. Informes para trámites legales y administrativos.",
     canonical: `${BASE_URL}/servicios/avaluos-peritajes-tecnicos`,
   },
   "/servicios/patologia-estructural": {
-    title: "Patología Estructural | Ing. Juan Carlos Mogollón",
+    title: "Patología Estructural en Caracas | Ing. Juan Carlos Mogollón",
     description:
-      "Evaluación de patologías en edificaciones, diagnóstico de daños estructurales, corrosión del concreto armado y recomendaciones de reparación en Venezuela.",
+      "Diagnóstico de daños estructurales, corrosión y deterioro del concreto en edificaciones de Caracas, Miranda y La Guaira.",
     canonical: `${BASE_URL}/servicios/patologia-estructural`,
   },
   "/servicios/estabilizacion-taludes": {
-    title: "Estabilización de Taludes | Ing. Juan Carlos Mogollón",
+    title: "Estabilización de Taludes en Venezuela | Ing. Juan Carlos Mogollón",
     description:
-      "Diseño y construcción de soluciones de estabilización de taludes: terraceo, bermas, muros de contención cantiléver y de gravedad en Venezuela.",
+      "Diseño y ejecución de soluciones para estabilizar taludes en Caracas, Miranda y La Guaira: bermas, terraceo y muros de contención.",
     canonical: `${BASE_URL}/servicios/estabilizacion-taludes`,
   },
-};
+  "/blog": {
+    title: "Blog de Ingeniería Civil | Obras Civiles en Venezuela",
+    description:
+      "Artículos de ingeniería civil sobre construcción, remodelaciones, patología estructural, taludes, avalúos y proyectos.",
+    canonical: `${BASE_URL}/blog`,
+  },
+}
+
+const unknownArticleMeta: RouteMeta = {
+  title: "Página no encontrada | Obras Civiles en Venezuela",
+  description: routeMeta["/"].description,
+  canonical: `${BASE_URL}/blog`,
+}
+
+export function normalizePathname(pathname: string): string {
+  const pathOnly = pathname.split(/[?#]/, 1)[0] || "/"
+  const withLeadingSlash = pathOnly.startsWith("/") ? pathOnly : `/${pathOnly}`
+  return withLeadingSlash === "/"
+    ? "/"
+    : withLeadingSlash.replace(/\/+$/, "") || "/"
+}
+
+export function createArticleRouteMeta(article: Article): RouteMeta {
+  return {
+    title: `${article.title} | Blog de Ingeniería Civil`,
+    description: article.description,
+    canonical: `${BASE_URL}/blog/${article.slug}`,
+  }
+}
+
+export function resolveRouteMeta(
+  pathname: string,
+  articleSource: Article[],
+): RouteMeta {
+  const normalizedPath = normalizePathname(pathname)
+  const staticMeta = routeMeta[normalizedPath]
+
+  if (staticMeta) return staticMeta
+
+  const articleMatch = normalizedPath.match(/^\/blog\/([^/]+)$/)
+  if (articleMatch) {
+    let slug: string
+    try {
+      slug = decodeURIComponent(articleMatch[1])
+    } catch {
+      return unknownArticleMeta
+    }
+
+    const article = articleSource.find(
+      (candidate) => candidate.published === true && candidate.slug === slug,
+    )
+    return article ? createArticleRouteMeta(article) : unknownArticleMeta
+  }
+
+  return routeMeta["/"]
+}
 
 export function getRouteMeta(pathname: string): RouteMeta {
-  return routeMeta[pathname] ?? routeMeta["/"];
+  return resolveRouteMeta(pathname, articles)
 }

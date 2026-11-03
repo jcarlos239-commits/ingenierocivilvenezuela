@@ -1,8 +1,8 @@
 import ServicePageLayout from "./ServicePageLayout";
-import icoProyectos from "@/imports/72951.png";
-import icoConstruccion from "@/imports/72947.png";
-import icoRemodelaciones from "@/imports/72948.png";
-import icoAvaluos from "@/imports/72949.png";
+import icoProyectos from "@/imports/72951.webp";
+import icoConstruccion from "@/imports/72947-card.webp";
+import icoRemodelaciones from "@/imports/72948-card.webp";
+import icoAvaluos from "@/imports/72949-card.webp";
 
 export default function Proyectos() {
   return (

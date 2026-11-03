@@ -68,6 +68,7 @@ img {
   height: auto;
 }
 
+
 /*
  * Do NOT set height:auto on video globally — background videos need
  * height:100% (Tailwind h-full) to fill their positioned container.

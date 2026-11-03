@@ -1,11 +1,12 @@
-import { Link } from "react-router";
-import { useWhatsApp } from "./WhatsAppModal";
+import { Link } from "react-router"
+import { useWhatsApp } from "./WhatsAppModal"
+import WhatsAppIcon from "./WhatsAppIcon"
 
 interface StepProps {
-  number: string;
-  title: string;
-  description: string;
-  isLast?: boolean;
+  number: string
+  title: string
+  description: string
+  isLast?: boolean
 }
 
 function Step({ number, title, description, isLast }: StepProps) {
@@ -13,78 +14,97 @@ function Step({ number, title, description, isLast }: StepProps) {
     <>
       <div className="flex gap-5 sm:gap-8 items-start py-4 w-full">
         <div className="bg-[#ffd200] flex items-center justify-center rounded-full shrink-0 size-[48px] sm:size-[56px]">
-          <span className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[#111315] text-[18px] sm:text-[20px]">{number}</span>
+          <span className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[#111315] text-[18px] sm:text-[20px]">
+            {number}
+          </span>
         </div>
         <div className="flex flex-col gap-[6px] flex-1 min-w-0">
-          <h3 className="font-['Unbounded:Bold',sans-serif] font-bold text-[#111315] text-[15px] sm:text-[18px] leading-normal">{title}</h3>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[13px] sm:text-[15px] leading-[1.5]">{description}</p>
+          <h3 className="font-['Unbounded:Bold',sans-serif] font-bold text-[#111315] text-[15px] sm:text-[18px] leading-normal">
+            {title}
+          </h3>
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[13px] sm:text-[15px] leading-[1.5]">
+            {description}
+          </p>
         </div>
       </div>
       {!isLast && <div className="h-px w-full bg-[#e9ecef]" />}
     </>
-  );
+  )
 }
 
 const steps = [
   {
     number: "1",
     title: "Consulta Inicial",
-    description: "Conversamos sobre tu idea por llamada o WhatsApp, agendamos una visita técnica de inspección al sitio del proyecto.",
+    description:
+      "Conversamos sobre tu idea por llamada o WhatsApp, agendamos una visita técnica de inspección al sitio del proyecto.",
   },
   {
     number: "2",
     title: "Presupuesto",
-    description: "Elaboramos un cómputo métrico detallado con desglose de materiales, mano de obra y cronograma estimado de ejecución de la obra.",
+    description:
+      "Elaboramos un cómputo métrico detallado con desglose de materiales, mano de obra y cronograma estimado de ejecución de la obra.",
   },
   {
     number: "3",
     title: "Ejecución de la Obra",
-    description: "Comenzamos los trabajos bajo supervisión de ingenieros colegiados residentes, asegurando el cumplimiento de normas de seguridad industrial.",
+    description:
+      "Comenzamos los trabajos bajo supervisión de ingenieros colegiados residentes, asegurando el cumplimiento de normas de seguridad industrial.",
   },
   {
     number: "4",
     title: "Entrega y Garantía",
-    description: "Inspeccionamos los acabados junto a ti y hacemos entrega formal de la obra civil respaldada por nuestra sólida garantía escrita.",
+    description:
+      "Inspeccionamos los acabados junto a ti y hacemos entrega formal de la obra civil respaldada por nuestra sólida garantía escrita.",
     isLast: true,
   },
-];
+]
 
 export default function Process() {
-  const { trigger, modal } = useWhatsApp();
+  const { trigger, triggerProps, modal } = useWhatsApp()
   return (
     <>
       {modal}
-    <section id="proceso" className="bg-[#f8f9fa] w-full">
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-start lg:items-center px-4 sm:px-8 md:px-[80px] pt-4 pb-10 sm:pt-8 sm:pb-[60px]">
-        {/* Left column */}
-        <div className="flex flex-col gap-5 sm:gap-6 w-full lg:w-[500px] lg:shrink-0">
-          <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#e0bc00] text-[10px] sm:text-[12px] uppercase tracking-wide">NUESTRO MÉTODO</p>
-          <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[#111315] text-[clamp(24px,4vw,36px)] leading-[1.2]">¿Cómo Trabajamos?</h2>
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[14px] sm:text-[16px] leading-[1.6]">
-            Diseñamos un proceso ágil y transparente desde el primer contacto para que conozcas el estatus real de tu obra en cada fase.
-          </p>
-          <button
-            onClick={trigger}
-            className="inline-flex items-center justify-center gap-[10px] bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors self-start min-h-[52px] border-none cursor-pointer"
-          >
-            <span className="font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]">Solicitar Presupuesto</span>
-          </button>
-          <Link
-            to="/como-trabajamos"
-            className="inline-flex items-center gap-2 text-[#111315] hover:text-[#ffd200] transition-colors font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] sm:text-[14px] self-start"
-          >
-            Ver proceso completo →
-          </Link>
-        </div>
+      <section id="proceso" className="bg-[#f8f9fa] w-full">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-start lg:items-center px-4 sm:px-8 md:px-[80px] pt-4 pb-10 sm:pt-8 sm:pb-[60px]">
+          {/* Left column */}
+          <div className="flex flex-col gap-5 sm:gap-6 w-full lg:w-[500px] lg:shrink-0">
+            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#e0bc00] text-[10px] sm:text-[12px] uppercase tracking-wide">
+              NUESTRO MÉTODO
+            </p>
+            <h2 className="font-['Unbounded:ExtraBold',sans-serif] font-extrabold text-[#111315] text-[clamp(24px,4vw,36px)] leading-[1.2]">
+              ¿Cómo Trabajamos?
+            </h2>
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-[#6c757d] text-[14px] sm:text-[16px] leading-[1.6]">
+              Diseñamos un proceso ágil y transparente desde el primer contacto
+              para que conozcas el estatus real de tu obra en cada fase.
+            </p>
+            <button
+              {...triggerProps}
+              onClick={trigger}
+              className="inline-flex items-center justify-center gap-[10px] bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors self-start min-h-[52px] border-none cursor-pointer"
+            >
+              <WhatsAppIcon />
+              <span className="font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px]">
+                Solicitar Presupuesto
+              </span>
+            </button>
+            <Link
+              to="/como-trabajamos"
+              className="inline-flex items-center gap-2 text-[#111315] hover:text-[#ffd200] transition-colors font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] sm:text-[14px] self-start"
+            >
+              Ver proceso completo →
+            </Link>
+          </div>
 
-        {/* Steps */}
-        <div className="flex flex-col flex-1 min-w-0 w-full">
-          {steps.map((s) => (
-            <Step key={s.number} {...s} />
-          ))}
+          {/* Steps */}
+          <div className="flex flex-col flex-1 min-w-0 w-full">
+            {steps.map((s) => (
+              <Step key={s.number} {...s} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
-  );
+  )
 }

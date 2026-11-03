@@ -3,6 +3,11 @@ import { useEffect } from "react";
 import { applyPageSeo, resetPageSeo } from "@/utils/seo";
 import { getRouteMeta } from "@/utils/prerender-meta";
 import { useWhatsApp } from "@/components/WhatsAppModal";
+import {
+  SCHEMA_IDS,
+  SERVICE_AREAS,
+  serializeJsonLd,
+} from "@/utils/structured-data";
 
 interface RelatedService {
   title: string;
@@ -38,15 +43,14 @@ export default function ServicePageLayout({
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${meta.canonical}#service`,
     "name": title,
     "description": meta.description,
     "provider": {
-      "@id": "https://ingenierocivilvenezuela.com/#organization",
-      "@type": "Organization",
-      "name": "Ing. Juan Carlos Mogollón",
+      "@id": SCHEMA_IDS.organization,
     },
-    "url": `https://ingenierocivilvenezuela.com${location.pathname}`,
-    "areaServed": ["Distrito Capital", "Miranda", "La Guaira"],
+    "url": meta.canonical,
+    "areaServed": SERVICE_AREAS,
   };
 
   const breadcrumbSchema = {
@@ -69,28 +73,24 @@ export default function ServicePageLayout({
         "@type": "ListItem",
         "position": 3,
         "name": title,
-        "item": `https://ingenierocivilvenezuela.com${location.pathname}`,
+        "item": meta.canonical,
       },
     ],
   };
 
   useEffect(() => {
-    applyPageSeo({
-      title: meta.title,
-      description: meta.description,
-      path: location.pathname,
-    });
+    applyPageSeo(meta);
     return () => {
       resetPageSeo();
     };
-  }, [meta.title, meta.description, location.pathname]);
+  }, [meta]);
 
-  const { trigger, modal } = useWhatsApp();
+  const { trigger, triggerProps, modal } = useWhatsApp();
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
       {modal}
     <div className="w-full">
       {/* Breadcrumb */}
@@ -122,6 +122,7 @@ export default function ServicePageLayout({
             </p>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <button
+                {...triggerProps}
                 onClick={trigger}
                 className="inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-6 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] border-none cursor-pointer"
               >
@@ -138,7 +139,7 @@ export default function ServicePageLayout({
           <div className="shrink-0 flex items-center justify-center w-full lg:w-auto">
             <img
               src={iconSrc}
-              alt={title}
+              alt={`Icono de servicio: ${title}`}
               style={{ width: 220, height: 220, objectFit: "contain" }}
             />
           </div>
@@ -187,10 +188,11 @@ export default function ServicePageLayout({
               ¿Necesitas asesoría para tu proyecto?
             </h2>
             <p className="font-['Inter:Regular',sans-serif] font-normal text-[#ced4da] text-[14px] sm:text-[15px] leading-[1.6]">
-              Contáctanos y cuéntanos sobre tu proyecto. Estamos listos para ayudarte.
+              Atendemos proyectos en el Distrito Capital / Caracas, Miranda y La Guaira. Contáctanos y cuéntanos sobre tu caso.
             </p>
           </div>
           <button
+            {...triggerProps}
             onClick={trigger}
             className="shrink-0 inline-flex items-center justify-center gap-2 bg-[#25d366] rounded-[8px] px-7 py-4 text-white hover:bg-[#1fb558] transition-colors font-['Inter:Bold',sans-serif] font-bold text-[15px] sm:text-[16px] w-full sm:w-auto border-none cursor-pointer"
           >
