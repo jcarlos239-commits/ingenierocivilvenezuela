@@ -1,12 +1,19 @@
-import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn";
-import heroDesktopWebP from "@/imports/ObrasCivilesLanding/hero-desktop.webp";
-import heroMobileWebP from "@/imports/ObrasCivilesLanding/hero-mobile.webp";
+import svgPaths from "@/imports/ObrasCivilesLanding/svg-1jh7odq5fn"
+import heroDesktopWebP from "@/imports/ObrasCivilesLanding/hero-desktop.webp"
+import heroMobileWebP from "@/imports/ObrasCivilesLanding/hero-mobile.webp"
 
-const WHATSAPP_URL = "https://wa.me/584141242017";
+const WHATSAPP_URL = "https://wa.me/584141242017"
 
 function WhatsAppIcon() {
   return (
-    <svg className="shrink-0" width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+    <svg
+      className="shrink-0"
+      width="24"
+      height="24"
+      viewBox="0 0 28 28"
+      fill="none"
+      aria-hidden="true"
+    >
       <path
         d="M14 2.333C7.557 2.333 2.333 7.557 2.333 14c0 2.02.527 3.916 1.449 5.557L2.333 25.667l6.287-1.423A11.594 11.594 0 0014 25.667c6.443 0 11.667-5.224 11.667-11.667S20.443 2.333 14 2.333z"
         fill="white"
@@ -17,168 +24,171 @@ function WhatsAppIcon() {
         fill="white"
       />
     </svg>
-  );
+  )
 }
 
 function ShieldIcon() {
   return (
-    <svg className="shrink-0 size-[28px]" fill="none" viewBox="0 0 24 24">
-      <path d={svgPaths.p332da700} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" />
+    <svg
+      className="shrink-0 size-[28px] sm:size-[24px]"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d={svgPaths.p332da700}
+        stroke="#FFD200"
+        strokeLinecap="round"
+        strokeWidth="2"
+      />
     </svg>
-  );
+  )
 }
 
 function AwardIcon() {
   return (
-    <svg className="shrink-0 size-[28px]" fill="none" viewBox="0 0 24 24">
-      <path d={svgPaths.p22269700} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" />
+    <svg
+      className="shrink-0 size-[28px] sm:size-[24px]"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d={svgPaths.p22269700}
+        stroke="#FFD200"
+        strokeLinecap="round"
+        strokeWidth="2"
+      />
     </svg>
-  );
+  )
 }
 
 function MapPinIcon() {
   return (
-    <svg className="shrink-0 size-[28px]" fill="none" viewBox="0 0 24 24">
-      <path d={svgPaths.p3d476500} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" />
+    <svg
+      className="shrink-0 size-[28px] sm:size-[24px]"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d={svgPaths.p3d476500}
+        stroke="#FFD200"
+        strokeLinecap="round"
+        strokeWidth="2"
+      />
     </svg>
-  );
+  )
 }
 
 function TrustBadges() {
   return (
-    <div className="grid grid-cols-3 gap-2 w-full">
+    <div className="relative z-[2] grid grid-cols-3 gap-2 sm:gap-6 w-full sm:max-w-[560px] sm:pt-2">
       <div className="flex flex-col items-center gap-2 text-center">
         <ShieldIcon />
-        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">30+ años de Trayectoria</span>
+        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] sm:text-[13px] text-white leading-snug">
+          30+ años de Trayectoria
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2 text-center">
         <AwardIcon />
-        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">Obras Garantizadas</span>
+        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] sm:text-[13px] text-white leading-snug">
+          Obras Garantizadas
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2 text-center">
         <MapPinIcon />
-        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] text-white leading-snug">Distrito Capital / Caracas, Miranda y La Guaira</span>
+        <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[11px] sm:text-[13px] text-white leading-snug">
+          Distrito Capital / Caracas, Miranda y La Guaira
+        </span>
       </div>
     </div>
-  );
+  )
 }
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative w-full -mt-[64px] sm:-mt-[80px]">
-
-      {/* ── MOBILE layout (hidden on sm+) ── */}
-      <div className="sm:hidden flex flex-col">
-
-        {/* Dark top block: badge + h1 */}
-        <div className="bg-[#111315] px-4 pt-[80px] pb-6 flex flex-col items-center gap-3">
-          <div className="border border-[#ffd200] rounded-[4px] px-4 py-[7px]">
-            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[9px] text-center leading-snug tracking-wide whitespace-nowrap">
+    <section
+      id="inicio"
+      className="relative w-full -mt-[64px] sm:-mt-[80px] sm:min-h-[600px]"
+    >
+      <div className="flex flex-col sm:min-h-[600px] sm:items-center sm:px-8 md:px-[80px] sm:pt-[96px] sm:pb-12 sm:gap-8">
+        {/* Dark top block on mobile; its children join the main desktop flex layout. */}
+        <div className="relative z-[2] bg-[#111315] px-4 pt-[80px] pb-6 flex flex-col items-center gap-3 sm:contents">
+          <div className="relative z-[2] border border-[#ffd200] rounded-[4px] px-4 py-[7px]">
+            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[9px] sm:text-[11px] text-center leading-snug tracking-wide whitespace-nowrap">
               INGENIERÍA CIVIL Y CONSTRUCCIÓN EN VENEZUELA
             </p>
           </div>
-          <div aria-hidden="true" className="h-[70.4px] w-full" />
+          <h1 className="relative z-[2] font-['Unbounded:Black',sans-serif] font-black leading-[1.1] text-[32px] text-center text-white sm:leading-[1.15] sm:text-[clamp(32px,5vw,56px)] sm:w-full">
+            Obras Civiles en Venezuela
+          </h1>
         </div>
 
-        {/* Image block with description overlaid */}
-        <div className="relative w-full" style={{ minHeight: "260px" }}>
-          <picture>
-            <source media="(max-width: 639px)" srcSet={heroMobileWebP} type="image/webp" />
+        {/* The same image and introduction adapt to both responsive layouts. */}
+        <div className="relative w-full min-h-[260px] sm:contents">
+          <picture className="absolute inset-0 z-0">
+            <source
+              media="(max-width: 639px)"
+              srcSet={heroMobileWebP}
+              type="image/webp"
+            />
             <img
-              src={heroDesktopWebP} alt="" aria-hidden="true"
+              src={heroDesktopWebP}
+              alt=""
+              aria-hidden="true"
               width={1536}
               height={672}
               fetchPriority="high"
               loading="eager"
               decoding="async"
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+                display: "block",
+              }}
             />
           </picture>
-          {/* Base overlay — 55% */}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)" }} />
-          {/* Top edge fade */}
-          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to bottom, rgba(17,19,21,0.42) 0%, transparent 100%)", zIndex: 1 }} />
-          {/* Bottom edge fade */}
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50px", background: "linear-gradient(to top, rgba(17,19,21,0.42) 0%, transparent 100%)", zIndex: 1 }} />
-          {/* Description overlaid on image */}
-          <div className="relative px-4 py-10 flex items-center justify-center" style={{ zIndex: 2 }}>
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[15px] text-center">
-              Construcción, remodelaciones y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-[1] bg-[rgba(17,19,21,0.30)]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute sm:hidden top-0 left-0 right-0 h-[50px] z-[1] bg-[linear-gradient(to_bottom,rgba(17,19,21,0.42)_0%,transparent_100%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute sm:hidden bottom-0 left-0 right-0 h-[50px] z-[1] bg-[linear-gradient(to_top,rgba(17,19,21,0.42)_0%,transparent_100%)]"
+          />
+          <div className="relative z-[2] px-4 py-10 flex items-center justify-center sm:contents">
+            <p className="relative z-[2] font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[15px] text-center sm:text-[clamp(15px,1.8vw,18px)] sm:w-full sm:max-w-[840px]">
+              Construcción, remodelaciones y proyectos de ingeniería civil con
+              el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381),
+              quien cuenta con conocimientos generales en patología de
+              edificaciones, estabilización de taludes y gerencia de
+              construcción con más de 30 años de trayectoria.
             </p>
           </div>
         </div>
 
-        {/* Dark bottom block: button then trust badges (same order as desktop) */}
-        <div className="bg-[#111315] px-4 pt-9 pb-5 flex flex-col gap-7">
+        {/* Dark bottom block on mobile; its children join the main desktop flex layout. */}
+        <div className="relative z-[2] bg-[#111315] px-4 pt-9 pb-5 flex flex-col gap-7 sm:contents">
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-fit self-center items-center justify-center gap-3 bg-[#25d366] rounded-[8px] px-5 py-4 text-white hover:bg-[#1fb558] transition-colors min-h-[56px]"
+            className="relative z-[2] flex w-fit self-center items-center justify-center gap-3 bg-[#25d366] rounded-[8px] px-5 py-4 text-white hover:bg-[#1fb558] transition-colors min-h-[56px]"
           >
             <WhatsAppIcon />
-            <span className="font-['Inter:Bold',sans-serif] font-bold text-[16px]">Escríbenos por WhatsApp</span>
+            <span className="font-['Inter:Bold',sans-serif] font-bold text-[16px]">
+              Escríbenos por WhatsApp
+            </span>
           </a>
           <TrustBadges />
         </div>
       </div>
-
-      {/* ── DESKTOP layout (hidden below sm) ── */}
-      <div className="contents sm:block" style={{ position: "relative" }}>
-        <picture className="hidden sm:block">
-          <source media="(max-width: 639px)" srcSet={heroMobileWebP} type="image/webp" />
-          <img
-            src={heroDesktopWebP} alt="" aria-hidden="true"
-            width={1536}
-            height={672}
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", zIndex: 0 }}
-          />
-        </picture>
-        <div className="hidden sm:block" aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundColor: "rgba(17,19,21,0.30)", zIndex: 1 }} />
-        <div
-          className="contents sm:relative sm:flex sm:flex-col sm:items-center sm:min-h-[600px] sm:px-8 md:px-[80px] sm:pt-[96px] sm:pb-12 sm:gap-8"
-          style={{ zIndex: 2 }}
-        >
-          <div className="hidden sm:block border border-[#ffd200] rounded-[4px] px-4 py-[7px]">
-            <p className="font-['Unbounded:Bold',sans-serif] font-bold text-[#ffd200] text-[11px] text-center leading-snug tracking-wide whitespace-nowrap">
-              INGENIERÍA CIVIL Y CONSTRUCCIÓN EN VENEZUELA
-            </p>
-          </div>
-          <h1 className="absolute left-4 right-4 top-[120px] z-[3] font-['Unbounded:Black',sans-serif] font-black leading-[1.1] text-[32px] text-center text-white sm:relative sm:left-auto sm:right-auto sm:top-auto sm:z-auto sm:leading-[1.15] sm:text-[clamp(32px,5vw,56px)] sm:w-full">
-            Obras Civiles en Venezuela
-          </h1>
-          <p className="hidden sm:block font-['Inter:Regular',sans-serif] font-normal leading-[1.6] text-[#ffd200] text-[clamp(15px,1.8vw,18px)] text-center w-full max-w-[840px]">
-            Construcción, remodelaciones y proyectos de ingeniería civil con el respaldo del Ingeniero Juan Carlos Mogollón (C.I.V.: 72.381), quien cuenta con conocimientos generales en patología de edificaciones, estabilización de taludes y gerencia de construcción con más de 30 años de trayectoria.
-          </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden w-fit self-center sm:flex items-center justify-center gap-3 bg-[#25d366] rounded-[8px] px-5 py-4 text-white hover:bg-[#1fb558] transition-colors min-h-[56px]"
-          >
-            <WhatsAppIcon />
-            <span className="font-['Inter:Bold',sans-serif] font-bold text-[16px]">Escríbenos por WhatsApp</span>
-          </a>
-          <div className="hidden sm:grid grid-cols-3 gap-6 w-full max-w-[560px] pt-2">
-            <div className="flex flex-col items-center gap-2 text-center">
-              <svg className="shrink-0 size-[24px]" fill="none" viewBox="0 0 24 24"><path d={svgPaths.p332da700} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" /></svg>
-              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">30+ años de Trayectoria</span>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
-              <svg className="shrink-0 size-[24px]" fill="none" viewBox="0 0 24 24"><path d={svgPaths.p22269700} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" /></svg>
-              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">Obras Garantizadas</span>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
-              <svg className="shrink-0 size-[24px]" fill="none" viewBox="0 0 24 24"><path d={svgPaths.p3d476500} stroke="#FFD200" strokeLinecap="round" strokeWidth="2" /></svg>
-              <span className="font-['Inter:Semi Bold',sans-serif] font-semibold text-[13px] text-white leading-snug">Distrito Capital / Caracas, Miranda y La Guaira</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </section>
-  );
+  )
 }
