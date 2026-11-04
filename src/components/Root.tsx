@@ -4,6 +4,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import { useWhatsApp } from "./WhatsAppModal"
 import { normalizePathname } from "../utils/prerender-meta"
+import { trackClientPageView } from "../utils/analytics"
 import SiteStructuredData from "./SiteStructuredData"
 import WhatsAppIcon from "./WhatsAppIcon"
 
@@ -74,6 +75,14 @@ export default function Root() {
     navigate,
     normalizedPath,
   ])
+
+  useEffect(() => {
+    const animationFrame = window.requestAnimationFrame(() => {
+      trackClientPageView(`${location.pathname}${location.search}`)
+    })
+
+    return () => window.cancelAnimationFrame(animationFrame)
+  }, [location.pathname, location.search])
 
   return (
     <div className="bg-white flex flex-col items-start w-full min-h-full">
