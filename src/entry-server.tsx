@@ -20,7 +20,7 @@ export {
 } from "./data/articles"
 export { sanitizeArticleHtml } from "./utils/sanitize-html"
 
-const BASE_URL = "https://ingenierocivilvenezuela.com"
+const BASE_URL = "https://www.ingenierocivilvenezuela.com"
 
 export async function render(urlPath: string): Promise<string> {
   const response = await renderRequest(urlPath)

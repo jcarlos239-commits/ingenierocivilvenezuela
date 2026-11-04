@@ -19,8 +19,8 @@ import { fileURLToPath } from "node:url"
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.resolve(__dirname, "../dist")
 const serverEntry = path.resolve(distDir, "server/entry-server.js")
-const BASE_URL = "https://ingenierocivilvenezuela.com"
-const OG_IMAGE = "https://ingenierocivilvenezuela.com/og-image.webp"
+const BASE_URL = "https://www.ingenierocivilvenezuela.com"
+const OG_IMAGE = "https://www.ingenierocivilvenezuela.com/og-image.webp"
 const OG_IMAGE_ALT = "Obras Civiles en Venezuela - Ing. Juan Carlos Mogollón"
 
 // Static paths remain explicit. Published article paths are discovered from

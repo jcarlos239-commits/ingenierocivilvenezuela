@@ -59,13 +59,13 @@ export default function BlogArticle() {
         "@type": "ListItem",
         position: 1,
         name: "Inicio",
-        item: "https://ingenierocivilvenezuela.com/",
+        item: "https://www.ingenierocivilvenezuela.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://ingenierocivilvenezuela.com/blog",
+        item: "https://www.ingenierocivilvenezuela.com/blog",
       },
       {
         "@type": "ListItem",

@@ -10,7 +10,7 @@ import {
 } from "./validate-seo.js"
 import { createRoutePaths, createSitemapXml, injectMeta } from "./prerender.js"
 
-const ORIGIN = "https://ingenierocivilvenezuela.com"
+const ORIGIN = "https://www.ingenierocivilvenezuela.com"
 const expectedMeta = {
   title: "Página de prueba SEO con título descriptivo y único",
   description:
@@ -28,6 +28,13 @@ function validHtml(meta = expectedMeta) {
 <html lang="es">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0MPCYVGG7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V0MPCYVGG7');
+    </script>
     <title>${meta.title}</title>
     <meta name="description" content="${meta.description}">
     <meta name="robots" content="index, follow">
@@ -102,6 +109,36 @@ describe("SEO page validation", () => {
   it("accepts a complete valid page", () => {
     const result = validateFixture(validHtml())
     assert.deepEqual(result.errors, [])
+  })
+
+  it("detects a missing GA4 loader", () => {
+    const html = validHtml().replace(
+      '    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0MPCYVGG7"></script>\n',
+      "",
+    )
+    const result = validateFixture(html)
+    assert.ok(
+      result.errors.some(
+        (issue) =>
+          issue.category === "Google Analytics" &&
+          issue.message.includes("loader"),
+      ),
+    )
+  })
+
+  it("detects duplicate GA4 configuration", () => {
+    const html = validHtml().replace(
+      "      gtag('config', 'G-V0MPCYVGG7');",
+      "      gtag('config', 'G-V0MPCYVGG7');\n      gtag('config', 'G-V0MPCYVGG7');",
+    )
+    const result = validateFixture(html)
+    assert.ok(
+      result.errors.some(
+        (issue) =>
+          issue.category === "Google Analytics" &&
+          issue.message.includes("config call"),
+      ),
+    )
   })
 
   it("accepts article-specific metadata in prerendered HTML", () => {
@@ -375,7 +412,7 @@ describe("SEO page validation", () => {
     const result = validateFixture(
       validHtml().replace(
         `href="${expectedMeta.canonical}"`,
-        'href="https://ingenierocivilvenezuela.com:8443/prueba"',
+        'href="https://www.ingenierocivilvenezuela.com:8443/prueba"',
       ),
     )
     assert.ok(

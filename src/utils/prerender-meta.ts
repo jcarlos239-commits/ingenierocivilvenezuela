@@ -1,6 +1,6 @@
 import { articles, type Article } from "../data/articles"
 
-const BASE_URL = "https://ingenierocivilvenezuela.com"
+const BASE_URL = "https://www.ingenierocivilvenezuela.com"
 
 export interface RouteMeta {
   title: string

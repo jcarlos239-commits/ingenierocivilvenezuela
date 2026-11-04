@@ -149,8 +149,8 @@ function assertSingleMetadataSet() {
 }
 
 function assertArticle(article) {
-  const expectedCanonical = `https://ingenierocivilvenezuela.com/blog/${article.slug}`
-  const expectedImage = `https://ingenierocivilvenezuela.com${article.featuredImage}`
+  const expectedCanonical = `https://www.ingenierocivilvenezuela.com/blog/${article.slug}`
+  const expectedImage = `https://www.ingenierocivilvenezuela.com${article.featuredImage}`
   assert.equal(property("og:type").content, "article")
   assert.equal(
     property("og:title").content,
@@ -193,11 +193,11 @@ function assertStatic(route) {
   assert.equal(property("og:type").content, "website")
   assert.equal(
     property("og:image").content,
-    "https://ingenierocivilvenezuela.com/og-image.webp",
+    "https://www.ingenierocivilvenezuela.com/og-image.webp",
   )
   assert.equal(
     meta("twitter:image").content,
-    "https://ingenierocivilvenezuela.com/og-image.webp",
+    "https://www.ingenierocivilvenezuela.com/og-image.webp",
   )
   assert.equal(
     meta("twitter:image:alt").content,
@@ -315,7 +315,7 @@ describe("client-side SEO navigation", () => {
     assert.equal(meta("robots").content, "index, follow")
     assert.equal(
       canonical().href,
-      "https://ingenierocivilvenezuela.com/servicios",
+      "https://www.ingenierocivilvenezuela.com/servicios",
     )
   })
 })

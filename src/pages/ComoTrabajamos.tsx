@@ -145,13 +145,13 @@ export default function ComoTrabajamos() {
         "@type": "ListItem",
         position: 1,
         name: "Inicio",
-        item: "https://ingenierocivilvenezuela.com/",
+        item: "https://www.ingenierocivilvenezuela.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "¿Cómo Trabajamos?",
-        item: "https://ingenierocivilvenezuela.com/como-trabajamos",
+        item: "https://www.ingenierocivilvenezuela.com/como-trabajamos",
       },
     ],
   }

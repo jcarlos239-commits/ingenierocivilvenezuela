@@ -89,13 +89,13 @@ export default function Servicios() {
         "@type": "ListItem",
         position: 1,
         name: "Inicio",
-        item: "https://ingenierocivilvenezuela.com/",
+        item: "https://www.ingenierocivilvenezuela.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Servicios",
-        item: "https://ingenierocivilvenezuela.com/servicios",
+        item: "https://www.ingenierocivilvenezuela.com/servicios",
       },
     ],
   }

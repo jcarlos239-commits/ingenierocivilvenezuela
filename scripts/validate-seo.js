@@ -5,7 +5,7 @@ import path from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 import { XMLParser, XMLValidator } from "fast-xml-parser"
 
-const SITE_ORIGIN = "https://ingenierocivilvenezuela.com"
+const SITE_ORIGIN = "https://www.ingenierocivilvenezuela.com"
 const SITEMAP_URL = `${SITE_ORIGIN}/sitemap.xml`
 const GENERIC_SOCIAL_IMAGE = `${SITE_ORIGIN}/og-image.webp`
 const GENERIC_SOCIAL_IMAGE_ALT =
@@ -507,6 +507,46 @@ export function validatePage({
   const expectedSocialImageAlt = article?.featuredImage
     ? article.featuredImageAlt
     : GENERIC_SOCIAL_IMAGE_ALT
+
+  const analyticsLoaders = [
+    ...html.matchAll(
+      /<script\b[^>]*\bsrc=["']https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-V0MPCYVGG7["'][^>]*><\/script>/gi,
+    ),
+  ]
+  const analyticsConfigs = [
+    ...html.matchAll(
+      /\bgtag\(\s*["']config["']\s*,\s*["']G-V0MPCYVGG7["']\s*\)/g,
+    ),
+  ]
+  if (analyticsLoaders.length !== 1) {
+    addIssue(
+      issues,
+      "errors",
+      "Google Analytics",
+      route,
+      file,
+      `Expected exactly one GA4 loader for G-V0MPCYVGG7; found ${analyticsLoaders.length}.`,
+    )
+  } else if (!/\basync(?:\s|=|>)/i.test(analyticsLoaders[0][0])) {
+    addIssue(
+      issues,
+      "errors",
+      "Google Analytics",
+      route,
+      file,
+      "The GA4 loader must use the async attribute.",
+    )
+  }
+  if (analyticsConfigs.length !== 1) {
+    addIssue(
+      issues,
+      "errors",
+      "Google Analytics",
+      route,
+      file,
+      `Expected exactly one GA4 config call for G-V0MPCYVGG7; found ${analyticsConfigs.length}.`,
+    )
+  }
 
   const titles = [...html.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)].map(
     (match) => decodeHtml(match[1].replace(/<[^>]*>/g, "").trim()),

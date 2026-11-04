@@ -22,8 +22,9 @@ const article: Article = {
   featuredImageHeight: 800,
   published: true,
 }
-const canonical = "https://ingenierocivilvenezuela.com/blog/articulo-de-prueba"
-const image = "https://ingenierocivilvenezuela.com/images/articulo.webp"
+const canonical =
+  "https://www.ingenierocivilvenezuela.com/blog/articulo-de-prueba"
+const image = "https://www.ingenierocivilvenezuela.com/images/articulo.webp"
 
 describe("createBlogPostingStructuredData", () => {
   it("creates the complete article graph with a featured image", () => {
@@ -125,7 +126,7 @@ describe("serializeJsonLd", () => {
 
   it("preserves URL meaning", () => {
     const data = {
-      url: "https://ingenierocivilvenezuela.com/blog/articulo?fuente=seo&vista=1#detalle",
+      url: "https://www.ingenierocivilvenezuela.com/blog/articulo?fuente=seo&vista=1#detalle",
     }
     const serialized = serializeJsonLd(data)
     const parsed = JSON.parse(serialized) as typeof data

@@ -150,8 +150,8 @@ export default function SobreMi() {
     "@graph": [
       {
         "@type": "ProfilePage",
-        "@id": "https://ingenierocivilvenezuela.com/sobre-mi#profilepage",
-        url: "https://ingenierocivilvenezuela.com/sobre-mi",
+        "@id": "https://www.ingenierocivilvenezuela.com/sobre-mi#profilepage",
+        url: "https://www.ingenierocivilvenezuela.com/sobre-mi",
         name: "Ing. Juan Carlos Mogollón — Ingeniero Civil",
         mainEntity: {
           "@id": SCHEMA_IDS.person,
@@ -164,13 +164,13 @@ export default function SobreMi() {
             "@type": "ListItem",
             position: 1,
             name: "Inicio",
-            item: "https://ingenierocivilvenezuela.com/",
+            item: "https://www.ingenierocivilvenezuela.com/",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Sobre Mí",
-            item: "https://ingenierocivilvenezuela.com/sobre-mi",
+            item: "https://www.ingenierocivilvenezuela.com/sobre-mi",
           },
         ],
       },

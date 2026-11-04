@@ -6,7 +6,7 @@ import {
   type RouteMeta,
 } from "./prerender-meta"
 
-const BASE_URL = "https://ingenierocivilvenezuela.com"
+const BASE_URL = "https://www.ingenierocivilvenezuela.com"
 const OG_IMAGE = `${BASE_URL}/og-image.webp`
 const OG_IMAGE_ALT = "Obras Civiles en Venezuela - Ing. Juan Carlos Mogollón"
 
